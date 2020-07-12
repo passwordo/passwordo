@@ -7,16 +7,31 @@
 //
 
 import UIKit
+import Eureka
 
-class NewPasswordViewController: UIViewController {
+class NewPasswordViewController: FormViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back",
-                                                           style: .plain,
-                                                           target: nil,
-                                                           action: nil)
+        form +++
+        MultivaluedSection(multivaluedOptions: [.Reorder, .Insert, .Delete],
+                           header: "Multivalued TextField",
+                           footer: ".Insert adds a 'Add Item' (Add New Tag) button row as last cell.") {
+            $0.addButtonProvider = { section in
+                return ButtonRow(){
+                    $0.title = "Add New Tag"
+                }
+            }
+            $0.multivaluedRowToInsertAt = { index in
+                return NameRow() {
+                    $0.placeholder = "Tag Name"
+                }
+            }
+            $0 <<< NameRow() {
+                $0.placeholder = "Tag Name"
+            }
+        }
         }
     
 

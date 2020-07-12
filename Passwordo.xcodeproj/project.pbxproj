@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		338AF3D4BF8FB0C77B8ECB07 /* Pods_Passwordo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCFB75DF4C86CEDC3704BE5 /* Pods_Passwordo.framework */; };
 		A16C43E324BA8B3700463D1F /* NewPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16C43E224BA8B3700463D1F /* NewPasswordViewController.swift */; };
 		A16EB49E24B96BEC00E179E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16EB49D24B96BEC00E179E3 /* AppDelegate.swift */; };
 		A16EB4A024B96BEC00E179E3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16EB49F24B96BEC00E179E3 /* SceneDelegate.swift */; };
@@ -17,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3D7E34073D55776B35FB30B1 /* Pods-Passwordo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Passwordo.release.xcconfig"; path = "Target Support Files/Pods-Passwordo/Pods-Passwordo.release.xcconfig"; sourceTree = "<group>"; };
+		5DCFB75DF4C86CEDC3704BE5 /* Pods_Passwordo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Passwordo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A16C43E224BA8B3700463D1F /* NewPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPasswordViewController.swift; sourceTree = "<group>"; };
 		A16EB49A24B96BEC00E179E3 /* Passwordo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Passwordo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A16EB49D24B96BEC00E179E3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -26,6 +29,7 @@
 		A16EB4A924B96BED00E179E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A16EB4AB24B96BED00E179E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A16EB4B224B96CF100E179E3 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		C54AACFF09C93B8275D40533 /* Pods-Passwordo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Passwordo.debug.xcconfig"; path = "Target Support Files/Pods-Passwordo/Pods-Passwordo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,17 +37,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				338AF3D4BF8FB0C77B8ECB07 /* Pods_Passwordo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1872B7F2F1AA4868C0FFCD67 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5DCFB75DF4C86CEDC3704BE5 /* Pods_Passwordo.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		A16EB49124B96BEC00E179E3 = {
 			isa = PBXGroup;
 			children = (
 				A16EB49C24B96BEC00E179E3 /* Passwordo */,
 				A16EB49B24B96BEC00E179E3 /* Products */,
+				D2000A478A451811B124C6B4 /* Pods */,
+				1872B7F2F1AA4868C0FFCD67 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -78,6 +93,16 @@
 			path = "Supporting files";
 			sourceTree = "<group>";
 		};
+		D2000A478A451811B124C6B4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C54AACFF09C93B8275D40533 /* Pods-Passwordo.debug.xcconfig */,
+				3D7E34073D55776B35FB30B1 /* Pods-Passwordo.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -85,9 +110,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A16EB4AE24B96BED00E179E3 /* Build configuration list for PBXNativeTarget "Passwordo" */;
 			buildPhases = (
+				BDB9250C3EC49D21C0B8CEDE /* [CP] Check Pods Manifest.lock */,
 				A16EB49624B96BEC00E179E3 /* Sources */,
 				A16EB49724B96BEC00E179E3 /* Frameworks */,
 				A16EB49824B96BEC00E179E3 /* Resources */,
+				0F366F68FE54D7B53BBA2BC2 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -143,6 +170,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0F366F68FE54D7B53BBA2BC2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Passwordo/Pods-Passwordo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Passwordo/Pods-Passwordo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Passwordo/Pods-Passwordo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BDB9250C3EC49D21C0B8CEDE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Passwordo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A16EB49624B96BEC00E179E3 /* Sources */ = {
@@ -294,6 +363,7 @@
 		};
 		A16EB4AF24B96BED00E179E3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C54AACFF09C93B8275D40533 /* Pods-Passwordo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -312,6 +382,7 @@
 		};
 		A16EB4B024B96BED00E179E3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3D7E34073D55776B35FB30B1 /* Pods-Passwordo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
