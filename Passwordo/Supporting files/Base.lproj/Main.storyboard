@@ -3,13 +3,14 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Root View Controller-->
+        <!--Passwords-->
         <scene sceneID="ZFG-TQ-XJI">
             <objects>
-                <tableViewController id="1pD-HL-rHM" customClass="TableViewController" customModule="Passwordo" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="1pD-HL-rHM" customClass="TableViewController" customModule="Passwordo" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="cck-aJ-vQG">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -29,15 +30,39 @@
                             <outlet property="delegate" destination="1pD-HL-rHM" id="17G-Dj-psn"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="cbD-C7-Jou"/>
+                    <navigationItem key="navigationItem" title="Passwords" id="cbD-C7-Jou">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="2zL-oe-rb8">
+                            <connections>
+                                <action selector="addNewPassword:" destination="1pD-HL-rHM" id="gSj-eP-jvU"/>
+                                <segue destination="e0T-ib-QAI" kind="show" id="fs0-vK-EME"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EEs-ac-6Jr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="806" y="145"/>
+            <point key="canvasLocation" x="803" y="143"/>
+        </scene>
+        <!--New Password View Controller-->
+        <scene sceneID="U7l-qm-017">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="e0T-ib-QAI" customClass="NewPasswordViewController" customModule="Passwordo" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6gI-vB-huA">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="zbt-nN-yeo"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Yrk-IH-jYf"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2Hr-bd-EPf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1693" y="143"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="wUc-al-rU5">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YOe-nn-SCk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController id="Yah-q1-36n" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="lhz-2X-0RR">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -47,7 +72,6 @@
                         <segue destination="1pD-HL-rHM" kind="relationship" relationship="rootViewController" id="gDK-ZY-JOJ"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="YOe-nn-SCk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-114" y="143"/>
         </scene>
