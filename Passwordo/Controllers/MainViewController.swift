@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TableViewController: UITableViewController {
+class MainViewController: UITableViewController {
     
     
     var loginsDictionary = [String: [String]]()
@@ -18,22 +18,27 @@ class TableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        logins = ["Facebook", "Gmail","VK", "Skype", "Skype","Github", "Facebook","Login1","Jogin2", "Login3","Pass1","Pass2","Pass3","Stack Overflow", "Utube",]
         
-        for login in logins {
-            let loginKey = String(login.prefix(1))
+       setup()
+    }
+    
+    
+    private func setup() {
+        var passwords: [MPassword] = [MPassword(itemName: "Facebook", userName: "UserName", password: "12345678", serviceURL: UIImage(named: "fb")!)]
+        
+        for item in passwords {
+            let loginKey = String(item.itemName.prefix(1))
             if var loginValues = loginsDictionary[loginKey] {
-                loginValues.append(login)
+                loginValues.append(item.itemName)
                 loginsDictionary[loginKey] = loginValues
             } else {
-                loginsDictionary[loginKey] = [login]
+                loginsDictionary[loginKey] = [item.itemName]
             }
         }
         
         loginSectionTitles = [String](loginsDictionary.keys)
         loginSectionTitles = loginSectionTitles.sorted(by: { $0 < $1 })
     }
-    
 
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -41,9 +46,9 @@ class TableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let carKey = loginSectionTitles[section]
-        if let carValues = loginsDictionary[carKey] {
-            return carValues.count
+        let loginKey = loginSectionTitles[section]
+        if let loginValues = loginsDictionary[loginKey] {
+            return loginValues.count
         }
         
         return 0
@@ -51,15 +56,15 @@ class TableViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? ItemTableViewCell
 
         // Configure the cell...
-        let carKey = loginSectionTitles[indexPath.section]
-        if let carValues = loginsDictionary[carKey] {
-            cell.textLabel?.text = carValues[indexPath.row]
+        let loginKey = loginSectionTitles[indexPath.section]
+        if let loginValues = loginsDictionary[loginKey] {
+            cell?.textLabel?.text = loginValues[indexPath.row]
         }
 
-        return cell
+        return cell!
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {

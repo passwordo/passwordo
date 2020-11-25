@@ -3,23 +3,27 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		338AF3D4BF8FB0C77B8ECB07 /* Pods_Passwordo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCFB75DF4C86CEDC3704BE5 /* Pods_Passwordo.framework */; };
+		A10569CA256E2F7E00F926B7 /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10569C9256E2F7E00F926B7 /* ItemTableViewCell.swift */; };
+		A169BC5624BB9E4D006D9BF9 /* MPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = A169BC5524BB9E4D006D9BF9 /* MPassword.swift */; };
 		A16C43E324BA8B3700463D1F /* NewPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16C43E224BA8B3700463D1F /* NewPasswordViewController.swift */; };
 		A16EB49E24B96BEC00E179E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16EB49D24B96BEC00E179E3 /* AppDelegate.swift */; };
 		A16EB4A024B96BEC00E179E3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16EB49F24B96BEC00E179E3 /* SceneDelegate.swift */; };
 		A16EB4A524B96BEC00E179E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A16EB4A324B96BEC00E179E3 /* Main.storyboard */; };
 		A16EB4A724B96BED00E179E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A16EB4A624B96BED00E179E3 /* Assets.xcassets */; };
 		A16EB4AA24B96BED00E179E3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A16EB4A824B96BED00E179E3 /* LaunchScreen.storyboard */; };
-		A16EB4B324B96CF100E179E3 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16EB4B224B96CF100E179E3 /* TableViewController.swift */; };
+		A16EB4B324B96CF100E179E3 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16EB4B224B96CF100E179E3 /* MainViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3D7E34073D55776B35FB30B1 /* Pods-Passwordo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Passwordo.release.xcconfig"; path = "Target Support Files/Pods-Passwordo/Pods-Passwordo.release.xcconfig"; sourceTree = "<group>"; };
 		5DCFB75DF4C86CEDC3704BE5 /* Pods_Passwordo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Passwordo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A10569C9256E2F7E00F926B7 /* ItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
+		A169BC5524BB9E4D006D9BF9 /* MPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MPassword.swift; sourceTree = "<group>"; };
 		A16C43E224BA8B3700463D1F /* NewPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPasswordViewController.swift; sourceTree = "<group>"; };
 		A16EB49A24B96BEC00E179E3 /* Passwordo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Passwordo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A16EB49D24B96BEC00E179E3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -28,7 +32,7 @@
 		A16EB4A624B96BED00E179E3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A16EB4A924B96BED00E179E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A16EB4AB24B96BED00E179E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A16EB4B224B96CF100E179E3 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		A16EB4B224B96CF100E179E3 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		C54AACFF09C93B8275D40533 /* Pods-Passwordo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Passwordo.debug.xcconfig"; path = "Target Support Files/Pods-Passwordo/Pods-Passwordo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -52,6 +56,24 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		A169BC5324BB9E16006D9BF9 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A16EB4B224B96CF100E179E3 /* MainViewController.swift */,
+				A16C43E224BA8B3700463D1F /* NewPasswordViewController.swift */,
+				A10569C9256E2F7E00F926B7 /* ItemTableViewCell.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		A169BC5424BB9E3D006D9BF9 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A169BC5524BB9E4D006D9BF9 /* MPassword.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		A16EB49124B96BEC00E179E3 = {
 			isa = PBXGroup;
 			children = (
@@ -73,8 +95,8 @@
 		A16EB49C24B96BEC00E179E3 /* Passwordo */ = {
 			isa = PBXGroup;
 			children = (
-				A16EB4B224B96CF100E179E3 /* TableViewController.swift */,
-				A16C43E224BA8B3700463D1F /* NewPasswordViewController.swift */,
+				A169BC5424BB9E3D006D9BF9 /* Models */,
+				A169BC5324BB9E16006D9BF9 /* Controllers */,
 				A16EB4B124B96C5E00E179E3 /* Supporting files */,
 				A16EB4AB24B96BED00E179E3 /* Info.plist */,
 			);
@@ -99,7 +121,6 @@
 				C54AACFF09C93B8275D40533 /* Pods-Passwordo.debug.xcconfig */,
 				3D7E34073D55776B35FB30B1 /* Pods-Passwordo.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -219,8 +240,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				A16EB49E24B96BEC00E179E3 /* AppDelegate.swift in Sources */,
-				A16EB4B324B96CF100E179E3 /* TableViewController.swift in Sources */,
+				A16EB4B324B96CF100E179E3 /* MainViewController.swift in Sources */,
+				A169BC5624BB9E4D006D9BF9 /* MPassword.swift in Sources */,
 				A16C43E324BA8B3700463D1F /* NewPasswordViewController.swift in Sources */,
+				A10569CA256E2F7E00F926B7 /* ItemTableViewCell.swift in Sources */,
 				A16EB4A024B96BEC00E179E3 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
