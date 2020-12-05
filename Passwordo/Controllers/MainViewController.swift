@@ -7,9 +7,21 @@
 //
 
 import UIKit
+//import LocalAuthentication
 
 class MainViewController: UITableViewController {
     
+    let tabBar = TabBarController()
+    
+    let passwords: [MPassword] = [
+        MPassword(itemName: "Facebook", userName: "UserName", password: "12345678", serviceURL: "fb.com", imageURL: "fb"),
+        MPassword(itemName: "Instagram", userName: "UserName", password: "12345678", serviceURL: "insta.com", imageURL: "fb"),
+        MPassword(itemName: "Fedor Network", userName: "UserName", password: "12345678", serviceURL: "fedor.com", imageURL: "fb"),
+        MPassword(itemName: "Amazon", userName: "UserName", password: "12345678", serviceURL: "amazon.com", imageURL: "fb"),
+        MPassword(itemName: "Dash", userName: "UserName", password: "12345678", serviceURL: "dash.com", imageURL: "fb"),
+        MPassword(itemName: "Twitter", userName: "UserName", password: "12345678", serviceURL: "twitter.com", imageURL: "fb"),
+        MPassword(itemName: "VKontakte", userName: "UserName", password: "12345678", serviceURL: "vk.com", imageURL: "fb"),
+    ]
     
     var loginsDictionary = [String: [String]]()
     var loginSectionTitles = [String]()
@@ -18,14 +30,13 @@ class MainViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-       setup()
+        self.setup()
     }
-    
-    
-    private func setup() {
-        var passwords: [MPassword] = [MPassword(itemName: "Facebook", userName: "UserName", password: "12345678", serviceURL: UIImage(named: "fb")!)]
         
+    private func setup() {
+        
+        //tableView.register(ItemTableViewCell.self, forCellReuseIdentifier: "cell")
+
         for item in passwords {
             let loginKey = String(item.itemName.prefix(1))
             if var loginValues = loginsDictionary[loginKey] {
@@ -56,15 +67,16 @@ class MainViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? ItemTableViewCell
-
-        // Configure the cell...
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ItemTableViewCell
+        
         let loginKey = loginSectionTitles[indexPath.section]
         if let loginValues = loginsDictionary[loginKey] {
-            cell?.textLabel?.text = loginValues[indexPath.row]
+            cell.itemNameLabel?.text = loginValues[indexPath.row]
+            cell.itemLoginLabel?.text = "test login text 123"
+            cell.itemImage.image = UIImage(named: "fb")
         }
 
-        return cell!
+        return cell
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {

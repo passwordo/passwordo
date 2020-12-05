@@ -13,12 +13,14 @@ struct MPassword {
     var itemName: String
     var userName: String
     var password: String
-    var serviceURL: UIImage?
+    var serviceURL: String
+    var imageURL: String?
     
-    init(itemName: String, userName: String, password: String, serviceURL: UIImage) {
+    init(itemName: String, userName: String, password: String, serviceURL: String, imageURL: String) {
         self.itemName = itemName
         self.userName = userName
         self.password = password
         self.serviceURL = serviceURL
+        self.imageURL = imageURL
     }
 }
