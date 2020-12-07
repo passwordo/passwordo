@@ -11,7 +11,6 @@ import UIKit
 
 class MainViewController: UITableViewController {
     
-    let tabBar = TabBarController()
     
     let passwords: [MPassword] = [
         MPassword(itemName: "Facebook", userName: "UserName", password: "12345678", serviceURL: "fb.com", imageURL: "fb"),
@@ -34,7 +33,6 @@ class MainViewController: UITableViewController {
     }
         
     private func setup() {
-        
         //tableView.register(ItemTableViewCell.self, forCellReuseIdentifier: "cell")
 
         for item in passwords {
@@ -71,6 +69,7 @@ class MainViewController: UITableViewController {
         
         let loginKey = loginSectionTitles[indexPath.section]
         if let loginValues = loginsDictionary[loginKey] {
+            cell.setup()
             cell.itemNameLabel?.text = loginValues[indexPath.row]
             cell.itemLoginLabel?.text = "test login text 123"
             cell.itemImage.image = UIImage(named: "fb")
@@ -91,6 +90,15 @@ class MainViewController: UITableViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+
+    @IBAction func addNewItem(_ sender: Any) {
+        
+        let newItemVC = NewPasswordViewController()
+        
+        navigationController?.pushViewController(newItemVC, animated: true)
+        
     }
     
 }

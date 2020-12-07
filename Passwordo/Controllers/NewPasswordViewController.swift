@@ -2,7 +2,7 @@
 //  NewPasswordViewController.swift
 //  Passwordo
 //
-//  Created by Boris Goncharov on 7/11/20.
+//  Created by Boris Goncharov on 12/6/20.
 //  Copyright © 2020 Boris Goncharov. All rights reserved.
 //
 
@@ -10,23 +10,118 @@ import UIKit
 
 class NewPasswordViewController: UIViewController {
     
-    @IBOutlet var loginLabel: UILabel!
-    @IBOutlet var passwordLabel: UILabel!
-    @IBOutlet var urlLabel: UILabel!
+    var loginLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Login"
+        label.font = UIFont(name: "AvenirNext-Medium", size: 17)
+        return label
+    }()
+    var passwordLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Password"
+        label.font = UIFont(name: "AvenirNext-Medium", size: 17)
+        return label
+    }()
+    var websiteLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Web site"
+        label.font = UIFont(name: "AvenirNext-Medium", size: 17)
+        return label
+    }()
     
-    @IBOutlet var loginTextField: UITextField!
-    @IBOutlet var passwordTextField: UITextField!
-    @IBOutlet var urlTextField: UITextField!
-    
-
+    var loginTextField: UITextField = {
+        let tf = UITextField()
+        tf.layer.borderWidth = 1
+        tf.layer.borderColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        tf.layer.cornerRadius = 4
+        tf.placeholder = "Type login here"
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: tf.frame.height))
+        tf.leftView = paddingView
+        tf.leftViewMode = .always
+        return tf
+    }()
+    var passvordTextField: UITextField = {
+        let tf = UITextField()
+        tf.layer.borderWidth = 1
+        tf.layer.borderColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        tf.layer.cornerRadius = 4
+        tf.placeholder = "Type password here"
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: tf.frame.height))
+        tf.leftView = paddingView
+        tf.leftViewMode = .always
+        return tf
+    }()
+    var websiteTextField: UITextField = {
+        let tf = UITextField()
+        tf.layer.borderWidth = 1
+        tf.layer.borderColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        tf.layer.cornerRadius = 4
+        tf.placeholder = "Web site"
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: tf.frame.height))
+        tf.leftView = paddingView
+        tf.leftViewMode = .always
+        return tf
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = .white
+        setup()
+        setupButton()
     }
     
-    @IBAction func saveBatton(_ sender: UIBarButtonItem) {
-       
+    private func setup() {
+        let loginStack = UIStackView(arrangedSubviews: [loginLabel, loginTextField])
+        loginStack.axis = .vertical
+        loginStack.spacing = 8
+        loginStack.translatesAutoresizingMaskIntoConstraints = false
+        
+        let passwordStack =  UIStackView(arrangedSubviews: [passwordLabel, passvordTextField])
+        passwordStack.axis = .vertical
+        passwordStack.spacing = 8
+        
+        let websiteStack =  UIStackView(arrangedSubviews: [websiteLabel, websiteTextField])
+        websiteStack.axis = .vertical
+        websiteStack.spacing = 8
+        
+        let stack = UIStackView(arrangedSubviews: [loginStack, passwordStack, websiteStack])
+        stack.axis = .vertical
+        stack.spacing = 16
+        
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(stack)
+        
+        NSLayoutConstraint.activate([
+            loginTextField.heightAnchor.constraint(equalToConstant: 42),
+            passvordTextField.heightAnchor.constraint(equalToConstant: 42),
+            websiteTextField.heightAnchor.constraint(equalToConstant: 42),
+            
+            stack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
+            stack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
+            stack.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -200)
+        ])
+        
+    }
+    
+    private func setupButton() {
+        
+        if #available(iOS 14.0, *) {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveNewItem))
+        } else {
+            // Fallback on earlier versions
+        }
+    }
+    
+    @objc private func saveNewItem() {
+        guard let login = loginTextField.text, let password = passvordTextField.text, let website = websiteTextField.text else { return }
+        if login.isEmpty || password.isEmpty ||  website.isEmpty {
+            //loginTextField.layer.borderColor = CGColor(red: 1, green: 0.2, blue: 0.1, alpha: 0.1)
+        } else {
+            let newPass = MPassword(itemName: website, userName: login, password: password, serviceURL: website, imageURL: "fb")
+            DatabaseManager().saveToDataBase(item: newPass)
+            self.dismiss(animated: true, completion: nil)
+        }
     }
     
 }

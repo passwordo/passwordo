@@ -8,15 +8,19 @@
 
 import Foundation
 import UIKit
+import RealmSwift
 
-struct MPassword {
-    var itemName: String
-    var userName: String
-    var password: String
-    var serviceURL: String
-    var imageURL: String?
+class MPassword: Object {
     
-    init(itemName: String, userName: String, password: String, serviceURL: String, imageURL: String) {
+    @objc dynamic var itemName: String = ""
+    @objc dynamic var userName: String = ""
+    @objc dynamic var password: String = ""
+    @objc dynamic var serviceURL: String = ""
+    @objc dynamic var imageURL: String = ""
+
+    
+    convenience init(itemName: String, userName: String, password: String, serviceURL: String, imageURL: String) {
+        self.init()
         self.itemName = itemName
         self.userName = userName
         self.password = password

@@ -9,5 +9,6 @@ target 'Passwordo' do
 
   # Pods for Passwordo
   pod 'Eureka'
+  pod 'RealmSwift'
 
 end
