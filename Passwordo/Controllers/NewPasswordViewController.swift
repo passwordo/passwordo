@@ -129,8 +129,15 @@ class NewPasswordViewController: UIViewController {
             let newPass = MPassword(itemName: website, userName: login, password: password, serviceURL: website, imageURL: "fb")
             DatabaseManager().saveToDataBase(item: newPass)
             
-            dismiss(animated: true, completion: nil)
-            self.mainView.reloadData()
+            self.dismiss(animated: true, completion: nil)
+//            self.mainView.reloadData()
+            
+            if let firstVC = presentingViewController as? MainViewController {
+                DispatchQueue.main.async {
+                    firstVC.tableView.reloadData()
+                }
+            }
+            
         }
     }
     

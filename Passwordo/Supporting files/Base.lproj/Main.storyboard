@@ -4,7 +4,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -15,7 +14,6 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="cck-aJ-vQG">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="z7t-6c-ynk" detailTextLabel="Mbu-Gd-WnH" rowHeight="55" style="IBUITableViewCellStyleSubtitle" id="xSa-nR-ZTD" customClass="ItemTableViewCell" customModule="Passwordo" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="55"/>
@@ -43,7 +41,7 @@
                             </tableViewCell>
                         </prototypes>
                         <connections>
-                            <outlet property="dataSource" destination="1pD-HL-rHM" id="4Hs-Dp-uuy"/>
+                            <outlet property="dataSource" destination="1pD-HL-rHM" id="Nu8-VV-ca8"/>
                             <outlet property="delegate" destination="1pD-HL-rHM" id="17G-Dj-psn"/>
                         </connections>
                     </tableView>
@@ -79,8 +77,5 @@
     </scenes>
     <resources>
         <image name="gearshape" catalog="system" width="128" height="121"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
     </resources>
 </document>

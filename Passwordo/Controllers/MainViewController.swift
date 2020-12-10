@@ -15,58 +15,52 @@ class MainViewController: UITableViewController {
         
     var db = DatabaseManager()
     
-    let searchBar = UISearchController()
+    private let searchBar = UISearchController()
     private var notificationToken: NotificationToken!
     
     var passwordItems: Results<MPassword>!
     
     var loginsDictionary = [String: [String]]()
     var loginSectionTitles = [String]()
-    
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         passwordItems = db.all()
-        tableView.reloadData()
         print(passwordItems!)
-//        tableView?.dataSource = self;
-//        tableView?.delegate = self;
-//        notificationToken = passwordItems.observe(updateTableView)
+        notificationToken = passwordItems.observe(updateTableView)
         self.setup()
     }
     
-
-//
-//    override func viewWillAppear(_ animated: Bool) {
-//        self.tableView.reloadData()
-//    }
-
-
+    deinit {
+        // Remove observer
+        NotificationCenter.default.removeObserver(self, name: UIApplication.willEnterForegroundNotification, object: nil)
+    }
     
-//    private func updateTableView(_ changes: RealmCollectionChange<Results<MPassword>>) {
-//        switch changes {
-//        case .initial:
-//            tableView.reloadData()
-//
-//        case .update(_, let deletions, let insertions, let modifications):
-//            tableView.beginUpdates()
+    private func updateTableView(_ changes: RealmCollectionChange<Results<MPassword>>) {
+        switch changes {
+        case .initial:
+            tableView.reloadData()
+
+        case .update(_, let deletions, let insertions, let modifications):
+            tableView.reloadData()
+            tableView.beginUpdates()
+                    
 //            tableView.reloadSections(IndexSet(integer: insertions[0]), with: .automatic)
-////            tableView.insertRows(at: [IndexPath(row: 0, section: insertions[0])], with: .automatic)
-////            tableView.deleteRows(at: deletions.map({ IndexPath(row: $0, section: 0)}), with: .automatic)
-////            tableView.reloadRows(at: modifications.map({ IndexPath(row: $0, section: 0) }), with: .automatic)
-//            tableView.endUpdates()
-////            self.tableView.reloadData()
-//
-//        case .error(let error):
-//            fatalError("\(error)")
-//        }
-//    }
+//            tableView.insertRows(at: [IndexPath(row: 0, section: insertions[0])], with: .automatic)
+//            tableView.deleteRows(at: deletions.map({ IndexPath(row: $0, section: 0)}), with: .automatic)
+//            tableView.reloadRows(at: modifications.map({ IndexPath(row: $0, section: 0) }), with: .automatic)
+            tableView.endUpdates()
+
+        case .error(let error):
+            fatalError("\(error)")
+        }
+    }
         
     private func setup() {
         navigationItem.searchController = searchBar
         tableView.tableFooterView = UIView()
+        searchBar.obscuresBackgroundDuringPresentation = false
 
         for item in passwordItems {
             //print(item)
@@ -124,8 +118,6 @@ class MainViewController: UITableViewController {
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
-        
- 
     }
     
 
@@ -142,10 +134,9 @@ class MainViewController: UITableViewController {
     @IBAction func addNewItem(_ sender: Any) {
         
         let newItemVC = NewPasswordViewController()
-        
-        
 //        navigationController?.pushViewController(newItemVC, animated: true)
         present(newItemVC, animated: true, completion: nil)
+        
         
     }
     

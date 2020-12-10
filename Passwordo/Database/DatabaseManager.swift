@@ -23,7 +23,7 @@ class DatabaseManager {
     
     func all() -> Results<MPassword> {
         let realm: Realm = try! Realm()
-        return realm.objects(MPassword.self)
+        return realm.objects(MPassword.self).sorted(byKeyPath: "itemName", ascending: true)
     }
 
 }
