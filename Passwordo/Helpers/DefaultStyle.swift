@@ -45,5 +45,23 @@ class DefaultStyle {
             return UIColor.darkGray
         }
     }()
+    
+    
+    public static var cellBackgroundColor: UIColor = {
+        if #available(iOS 13, *) {
+            return UIColor { (UITraitCollection: UITraitCollection) -> UIColor in
+                if UITraitCollection.userInterfaceStyle == .dark {
+                    /// Return the color for Dark Mode
+                    return #colorLiteral(red: 0.1510637071, green: 0.1510637071, blue: 0.1510637071, alpha: 1)
+                } else {
+                    /// Return the color for Light Mode
+                    return UIColor.white
+                }
+            }
+        } else {
+            /// Return a fallback color for iOS 12 and lower.
+            return UIColor.darkGray
+        }
+    }()
         
     }

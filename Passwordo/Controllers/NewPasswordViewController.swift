@@ -10,6 +10,9 @@ import UIKit
 
 class NewPasswordViewController: UIViewController {
     
+    let navbar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width , height: 58))
+    var mainView = MainViewController()
+    
     var loginLabel: UILabel = {
         let label = UILabel()
         label.text = "Login"
@@ -40,7 +43,7 @@ class NewPasswordViewController: UIViewController {
         tf.leftViewMode = .always
         return tf
     }()
-    var passvordTextField: UITextField = {
+    var passwordTextField: UITextField = {
         let tf = UITextField()
         tf.layer.borderWidth = 1
         tf.layer.borderColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
@@ -68,16 +71,26 @@ class NewPasswordViewController: UIViewController {
         
         view.backgroundColor = .white
         setup()
-        setupButton()
+        loginTextField.becomeFirstResponder()
     }
     
     private func setup() {
+        view.addSubview(navbar)
+        navbar.backgroundColor = UIColor.systemGray6
+        navbar.delegate = self
+        let navItem = UINavigationItem()
+        navItem.title = "Add new password"
+        navItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(pressCancelButton))
+        navItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveNewItem))
+        navbar.items = [navItem]
+        
+        
         let loginStack = UIStackView(arrangedSubviews: [loginLabel, loginTextField])
         loginStack.axis = .vertical
         loginStack.spacing = 8
         loginStack.translatesAutoresizingMaskIntoConstraints = false
         
-        let passwordStack =  UIStackView(arrangedSubviews: [passwordLabel, passvordTextField])
+        let passwordStack =  UIStackView(arrangedSubviews: [passwordLabel, passwordTextField])
         passwordStack.axis = .vertical
         passwordStack.spacing = 8
         
@@ -94,7 +107,7 @@ class NewPasswordViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             loginTextField.heightAnchor.constraint(equalToConstant: 42),
-            passvordTextField.heightAnchor.constraint(equalToConstant: 42),
+            passwordTextField.heightAnchor.constraint(equalToConstant: 42),
             websiteTextField.heightAnchor.constraint(equalToConstant: 42),
             
             stack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
@@ -104,24 +117,25 @@ class NewPasswordViewController: UIViewController {
         
     }
     
-    private func setupButton() {
-        
-        if #available(iOS 14.0, *) {
-            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveNewItem))
-        } else {
-            // Fallback on earlier versions
-        }
+    @objc private func pressCancelButton() {
+        dismiss(animated: true, completion: nil)
     }
     
     @objc private func saveNewItem() {
-        guard let login = loginTextField.text, let password = passvordTextField.text, let website = websiteTextField.text else { return }
+        guard let login = loginTextField.text, let password = passwordTextField.text, let website = websiteTextField.text else { return }
         if login.isEmpty || password.isEmpty ||  website.isEmpty {
             //loginTextField.layer.borderColor = CGColor(red: 1, green: 0.2, blue: 0.1, alpha: 0.1)
         } else {
             let newPass = MPassword(itemName: website, userName: login, password: password, serviceURL: website, imageURL: "fb")
             DatabaseManager().saveToDataBase(item: newPass)
-            self.dismiss(animated: true, completion: nil)
+            
+            dismiss(animated: true, completion: nil)
+            self.mainView.reloadData()
         }
     }
+    
+}
+
+extension NewPasswordViewController: UINavigationBarDelegate {
     
 }

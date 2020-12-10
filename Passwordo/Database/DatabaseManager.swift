@@ -12,16 +12,18 @@ import RealmSwift
 
 class DatabaseManager {
     
-    let pass = MPassword(itemName: "Facebook", userName: "username", password: "123456", serviceURL: "https://fb.com", imageURL: "fb")
-    
-    let realm = try! Realm()
-    
     func saveToDataBase(item: MPassword) {
+        let realm: Realm = try! Realm()
         
         try! realm.write {
             realm.add(item)
         }
-      // print(Realm.Configuration.defaultConfiguration.fileURL)
+//       print(Realm.Configuration.defaultConfiguration.fileURL)
+    }
+    
+    func all() -> Results<MPassword> {
+        let realm: Realm = try! Realm()
+        return realm.objects(MPassword.self)
     }
 
 }

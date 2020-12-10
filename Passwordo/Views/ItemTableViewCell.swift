@@ -11,14 +11,12 @@ import UIKit
 class ItemTableViewCell: UITableViewCell {
     
     let color = DefaultStyle()
-    
-    @IBOutlet weak var itemImage: UIImageView!
-    @IBOutlet weak var itemNameLabel: UILabel!
-    @IBOutlet weak var itemLoginLabel: UILabel!
-    
+
     public func setup() {
-        itemNameLabel.textColor = color.Style.text
-        itemLoginLabel.textColor = color.Style.smallText
+        textLabel?.textColor = color.Style.text
+        detailTextLabel?.textColor = color.Style.smallText
+        
+        backgroundColor = color.Style.cellBackgroundColor
     }
     
 }
