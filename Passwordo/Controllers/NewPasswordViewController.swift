@@ -79,7 +79,6 @@ class NewPasswordViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        NotificationCenter.default.post(name: Notification.Name(rawValue: "Data"), object: nil)
     }
     
     private func setup() {
@@ -134,8 +133,8 @@ class NewPasswordViewController: UIViewController {
             //loginTextField.layer.borderColor = CGColor(red: 1, green: 0.2, blue: 0.1, alpha: 0.1)
         } else {
             let newPass = MPassword(itemName: website, userName: login, password: password, serviceURL: website, imageURL: "fb")
-            print(newPass)
             DatabaseManager().saveToDataBase(item: newPass)
+            NotificationCenter.default.post(name: Notification.Name(rawValue: "Data"), object: nil)
             self.dismiss(animated: true, completion: nil)
         }
     }

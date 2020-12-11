@@ -25,5 +25,11 @@ class DatabaseManager {
         let realm: Realm = try! Realm()
         return realm.objects(MPassword.self).sorted(byKeyPath: "itemName", ascending: true)
     }
+    
+    func search(searchText: String) -> Results<MPassword> {
+        let realm: Realm = try! Realm()
+//        let search = searchText.lowercased()
+        return realm.objects(MPassword.self).filter("itemName CONTAINS[c] '\(searchText)' || userName CONTAINS[c] '\(searchText)'")
+    }
 
 }

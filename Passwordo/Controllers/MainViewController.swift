@@ -9,12 +9,14 @@
 import UIKit
 import RealmSwift
 
-class MainViewController: UITableViewController {
+class MainViewController: UITableViewController, UISearchControllerDelegate {
     
-    private let searchBar = UISearchController()
+    private let searchController = UISearchController(searchResultsController: nil)
         
     var db = DatabaseManager()
     var passwordItems: Results<MPassword>!
+    
+    var timer: Timer?
     
     var loginsDictionary = [String: [String]]()
     var loginSectionTitles = [String]()
@@ -25,6 +27,7 @@ class MainViewController: UITableViewController {
         passwordItems = db.all()
         self.setup()
         NotificationCenter.default.addObserver(self, selector: #selector(reload), name: NSNotification.Name(rawValue: "Data"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(searchReload), name: NSNotification.Name(rawValue: "searchData"), object: nil)
     }
     
     deinit {
@@ -39,16 +42,30 @@ class MainViewController: UITableViewController {
         tableView.reloadData()
     }
     
+    @objc func searchReload() {
+//        passwordItems = db.all()
+        print("searchReload: \(passwordItems)")
+        createSections()
+//        print(passwordItems!)
+        tableView.reloadData()
+    }
+    
         
     private func setup() {
+        searchController.searchBar.delegate = self
         createSections()
-        navigationItem.searchController = searchBar
+        navigationItem.searchController = searchController
         tableView.tableFooterView = UIView()
-        searchBar.obscuresBackgroundDuringPresentation = false
+        searchController.obscuresBackgroundDuringPresentation = false
         navigationController?.navigationBar.prefersLargeTitles = true
+        
+        navigationItem.hidesSearchBarWhenScrolling = false
     }
     
     private func createSections() {
+        
+        loginsDictionary = [String: [String]]()
+        loginSectionTitles = [String]()
         
         for item in passwordItems {
             let loginKey = String(item.itemName.prefix(1))
@@ -114,5 +131,23 @@ class MainViewController: UITableViewController {
         let newItemVC = NewPasswordViewController()
         present(newItemVC, animated: true, completion: nil)
 
+    }
+}
+
+extension MainViewController: UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+
+        timer?.invalidate()
+        
+        timer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false, block: { (_) in
+            self.passwordItems = self.db.search(searchText: searchText)
+            NotificationCenter.default.post(name: Notification.Name(rawValue: "searchData"), object: nil)
+        })
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        self.passwordItems = db.all()
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "Data"), object: nil)
     }
 }
