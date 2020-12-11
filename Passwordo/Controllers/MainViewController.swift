@@ -8,16 +8,12 @@
 
 import UIKit
 import RealmSwift
-//import LocalAuthentication
-
 
 class MainViewController: UITableViewController {
-        
-    var db = DatabaseManager()
     
     private let searchBar = UISearchController()
-    private var notificationToken: NotificationToken!
-    
+        
+    var db = DatabaseManager()
     var passwordItems: Results<MPassword>!
     
     var loginsDictionary = [String: [String]]()
@@ -27,9 +23,8 @@ class MainViewController: UITableViewController {
         super.viewDidLoad()
         
         passwordItems = db.all()
-        print(passwordItems!)
-        notificationToken = passwordItems.observe(updateTableView)
         self.setup()
+        NotificationCenter.default.addObserver(self, selector: #selector(reload), name: NSNotification.Name(rawValue: "Data"), object: nil)
     }
     
     deinit {
@@ -37,39 +32,30 @@ class MainViewController: UITableViewController {
         NotificationCenter.default.removeObserver(self, name: UIApplication.willEnterForegroundNotification, object: nil)
     }
     
-    private func updateTableView(_ changes: RealmCollectionChange<Results<MPassword>>) {
-        switch changes {
-        case .initial:
-            tableView.reloadData()
-
-        case .update(_, let deletions, let insertions, let modifications):
-            tableView.reloadData()
-            tableView.beginUpdates()
-                    
-//            tableView.reloadSections(IndexSet(integer: insertions[0]), with: .automatic)
-//            tableView.insertRows(at: [IndexPath(row: 0, section: insertions[0])], with: .automatic)
-//            tableView.deleteRows(at: deletions.map({ IndexPath(row: $0, section: 0)}), with: .automatic)
-//            tableView.reloadRows(at: modifications.map({ IndexPath(row: $0, section: 0) }), with: .automatic)
-            tableView.endUpdates()
-
-        case .error(let error):
-            fatalError("\(error)")
-        }
+    @objc func reload() {
+        passwordItems = db.all()
+        createSections()
+        print(passwordItems!)
+        tableView.reloadData()
     }
+    
         
     private func setup() {
+        createSections()
         navigationItem.searchController = searchBar
         tableView.tableFooterView = UIView()
         searchBar.obscuresBackgroundDuringPresentation = false
-
+        navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+    private func createSections() {
+        
         for item in passwordItems {
-            //print(item)
-            
             let loginKey = String(item.itemName.prefix(1))
-            
             if var loginValues = loginsDictionary[loginKey] {
-                //print(loginValues)
-                loginValues.append(item.id)
+                if !loginValues.contains(item.id) {
+                    loginValues.append(item.id)
+                }
                 loginsDictionary[loginKey] = loginValues
             } else {
                 loginsDictionary[loginKey] = [item.id]
@@ -78,8 +64,6 @@ class MainViewController: UITableViewController {
 
         loginSectionTitles = [String](loginsDictionary.keys)
         loginSectionTitles = loginSectionTitles.sorted(by: { $0 < $1 })
-        
-        navigationController?.navigationBar.prefersLargeTitles = true
     }
 
     // MARK: - Table view data source
@@ -114,14 +98,8 @@ class MainViewController: UITableViewController {
         return cell
     }
     
-    func reloadData() {
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
-    }
-    
 
-    
+
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return loginSectionTitles[section]
     }
@@ -134,10 +112,7 @@ class MainViewController: UITableViewController {
     @IBAction func addNewItem(_ sender: Any) {
         
         let newItemVC = NewPasswordViewController()
-//        navigationController?.pushViewController(newItemVC, animated: true)
         present(newItemVC, animated: true, completion: nil)
-        
-        
+
     }
-    
 }

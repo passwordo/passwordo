@@ -11,7 +11,6 @@ import UIKit
 class NewPasswordViewController: UIViewController {
     
     let navbar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width , height: 58))
-    var mainView = MainViewController()
     
     var loginLabel: UILabel = {
         let label = UILabel()
@@ -19,12 +18,14 @@ class NewPasswordViewController: UIViewController {
         label.font = UIFont(name: "AvenirNext-Medium", size: 17)
         return label
     }()
+    
     var passwordLabel: UILabel = {
         let label = UILabel()
         label.text = "Password"
         label.font = UIFont(name: "AvenirNext-Medium", size: 17)
         return label
     }()
+    
     var websiteLabel: UILabel = {
         let label = UILabel()
         label.text = "Web site"
@@ -43,6 +44,7 @@ class NewPasswordViewController: UIViewController {
         tf.leftViewMode = .always
         return tf
     }()
+    
     var passwordTextField: UITextField = {
         let tf = UITextField()
         tf.layer.borderWidth = 1
@@ -54,6 +56,7 @@ class NewPasswordViewController: UIViewController {
         tf.leftViewMode = .always
         return tf
     }()
+    
     var websiteTextField: UITextField = {
         let tf = UITextField()
         tf.layer.borderWidth = 1
@@ -74,6 +77,11 @@ class NewPasswordViewController: UIViewController {
         loginTextField.becomeFirstResponder()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "Data"), object: nil)
+    }
+    
     private func setup() {
         view.addSubview(navbar)
         navbar.backgroundColor = UIColor.systemGray6
@@ -83,7 +91,6 @@ class NewPasswordViewController: UIViewController {
         navItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(pressCancelButton))
         navItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveNewItem))
         navbar.items = [navItem]
-        
         
         let loginStack = UIStackView(arrangedSubviews: [loginLabel, loginTextField])
         loginStack.axis = .vertical
@@ -127,20 +134,11 @@ class NewPasswordViewController: UIViewController {
             //loginTextField.layer.borderColor = CGColor(red: 1, green: 0.2, blue: 0.1, alpha: 0.1)
         } else {
             let newPass = MPassword(itemName: website, userName: login, password: password, serviceURL: website, imageURL: "fb")
+            print(newPass)
             DatabaseManager().saveToDataBase(item: newPass)
-            
             self.dismiss(animated: true, completion: nil)
-//            self.mainView.reloadData()
-            
-            if let firstVC = presentingViewController as? MainViewController {
-                DispatchQueue.main.async {
-                    firstVC.tableView.reloadData()
-                }
-            }
-            
         }
     }
-    
 }
 
 extension NewPasswordViewController: UINavigationBarDelegate {

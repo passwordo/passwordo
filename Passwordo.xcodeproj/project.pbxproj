@@ -114,7 +114,6 @@
 			children = (
 				A16EB49D24B96BEC00E179E3 /* AppDelegate.swift */,
 				A16EB49F24B96BEC00E179E3 /* SceneDelegate.swift */,
-				A16EB4A324B96BEC00E179E3 /* Main.storyboard */,
 				A16EB4A624B96BED00E179E3 /* Assets.xcassets */,
 				A16EB4A824B96BED00E179E3 /* LaunchScreen.storyboard */,
 			);
@@ -132,6 +131,7 @@
 		A19EC9B6257B1B4B002F4EAA /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A16EB4A324B96BEC00E179E3 /* Main.storyboard */,
 				A10569C9256E2F7E00F926B7 /* ItemTableViewCell.swift */,
 			);
 			path = Views;
