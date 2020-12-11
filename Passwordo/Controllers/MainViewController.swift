@@ -43,10 +43,7 @@ class MainViewController: UITableViewController, UISearchControllerDelegate {
     }
     
     @objc func searchReload() {
-//        passwordItems = db.all()
-        print("searchReload: \(passwordItems)")
         createSections()
-//        print(passwordItems!)
         tableView.reloadData()
     }
     
@@ -141,7 +138,11 @@ extension MainViewController: UISearchBarDelegate {
         timer?.invalidate()
         
         timer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false, block: { (_) in
-            self.passwordItems = self.db.search(searchText: searchText)
+            if searchText.isEmpty{
+                self.passwordItems = self.db.all()
+            } else {
+                self.passwordItems = self.db.search(searchText: searchText)
+            }
             NotificationCenter.default.post(name: Notification.Name(rawValue: "searchData"), object: nil)
         })
     }

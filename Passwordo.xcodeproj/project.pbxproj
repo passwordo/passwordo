@@ -18,6 +18,7 @@
 		A16EB4B324B96CF100E179E3 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16EB4B224B96CF100E179E3 /* MainViewController.swift */; };
 		A19B3B28257D6EA500C042FA /* NewPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19B3B27257D6EA500C042FA /* NewPasswordViewController.swift */; };
 		A19B3B37257D841B00C042FA /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19B3B36257D841B00C042FA /* DatabaseManager.swift */; };
+		A19BCA1A2584194100FCF31B /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19BCA192584194100FCF31B /* KeychainService.swift */; };
 		A19EC9BD257B2E9A002F4EAA /* DefaultStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19EC9BC257B2E9A002F4EAA /* DefaultStyle.swift */; };
 /* End PBXBuildFile section */
 
@@ -36,6 +37,7 @@
 		A16EB4B224B96CF100E179E3 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		A19B3B27257D6EA500C042FA /* NewPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPasswordViewController.swift; sourceTree = "<group>"; };
 		A19B3B36257D841B00C042FA /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
+		A19BCA192584194100FCF31B /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
 		A19EC9BC257B2E9A002F4EAA /* DefaultStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultStyle.swift; sourceTree = "<group>"; };
 		C54AACFF09C93B8275D40533 /* Pods-Passwordo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Passwordo.debug.xcconfig"; path = "Target Support Files/Pods-Passwordo/Pods-Passwordo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -98,6 +100,7 @@
 		A16EB49C24B96BEC00E179E3 /* Passwordo */ = {
 			isa = PBXGroup;
 			children = (
+				A19BCA182584192B00FCF31B /* Security */,
 				A19B3B34257D83C000C042FA /* Database */,
 				A169BC5424BB9E3D006D9BF9 /* Models */,
 				A169BC5324BB9E16006D9BF9 /* Controllers */,
@@ -126,6 +129,14 @@
 				A19B3B36257D841B00C042FA /* DatabaseManager.swift */,
 			);
 			path = Database;
+			sourceTree = "<group>";
+		};
+		A19BCA182584192B00FCF31B /* Security */ = {
+			isa = PBXGroup;
+			children = (
+				A19BCA192584194100FCF31B /* KeychainService.swift */,
+			);
+			path = Security;
 			sourceTree = "<group>";
 		};
 		A19EC9B6257B1B4B002F4EAA /* Views */ = {
@@ -274,6 +285,7 @@
 				A19EC9BD257B2E9A002F4EAA /* DefaultStyle.swift in Sources */,
 				A19B3B28257D6EA500C042FA /* NewPasswordViewController.swift in Sources */,
 				A16EB4B324B96CF100E179E3 /* MainViewController.swift in Sources */,
+				A19BCA1A2584194100FCF31B /* KeychainService.swift in Sources */,
 				A169BC5624BB9E4D006D9BF9 /* MPassword.swift in Sources */,
 				A10569CA256E2F7E00F926B7 /* ItemTableViewCell.swift in Sources */,
 				A16EB4A024B96BEC00E179E3 /* SceneDelegate.swift in Sources */,
