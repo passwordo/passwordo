@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="83" id="Qw4-m2-SNx" customClass="NamePictureCell" customModule="Passwordo" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="529" height="83"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Qw4-m2-SNx" id="d2Z-uE-rZ1">
+                <rect key="frame" x="0.0" y="0.0" width="529" height="83"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="2Kr-Su-qRp">
+                        <rect key="frame" x="24" y="12" width="481" height="58"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2gg-Ow-cm1">
+                                <rect key="frame" x="0.0" y="0.0" width="58" height="58"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="58" id="F6D-ZC-NjT"/>
+                                    <constraint firstAttribute="width" constant="58" id="mcn-vk-8BO"/>
+                                </constraints>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="q19-KT-tq0">
+                                <rect key="frame" x="82" y="0.0" width="399" height="58"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iWe-6X-nyv">
+                                        <rect key="frame" x="0.0" y="0.0" width="39.5" height="27"/>
+                                        <fontDescription key="fontDescription" name="KohinoorBangla-Light" family="Kohinoor Bangla" pointSize="15"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="Name"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="61v-hY-uDw">
+                                        <rect key="frame" x="0.0" y="31" width="375" height="27"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="61v-hY-uDw" secondAttribute="trailing" constant="24" id="RgR-sx-w2o"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="2Kr-Su-qRp" secondAttribute="trailing" constant="24" id="Eid-pl-FY9"/>
+                    <constraint firstAttribute="bottom" secondItem="2Kr-Su-qRp" secondAttribute="bottom" constant="12" id="JhM-GR-eJ4"/>
+                    <constraint firstItem="2Kr-Su-qRp" firstAttribute="top" secondItem="d2Z-uE-rZ1" secondAttribute="top" constant="12" id="VN9-fu-nf7"/>
+                    <constraint firstItem="2Kr-Su-qRp" firstAttribute="leading" secondItem="d2Z-uE-rZ1" secondAttribute="leading" constant="24" id="brR-42-vO2"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="nameTextField" destination="61v-hY-uDw" id="DP1-U2-KCe"/>
+                <outlet property="pictureImageView" destination="2gg-Ow-cm1" id="Kh8-jb-maX"/>
+            </connections>
+            <point key="canvasLocation" x="141.30434782608697" y="107.47767857142857"/>
+        </tableViewCell>
+    </objects>
+</document>

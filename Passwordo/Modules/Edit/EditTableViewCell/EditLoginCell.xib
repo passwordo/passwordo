@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="116" id="7u0-MX-wz5" customClass="EditLoginCell" customModule="Passwordo" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="455" height="116"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7u0-MX-wz5" id="Qb9-YU-8fy">
+                <rect key="frame" x="0.0" y="0.0" width="455" height="116"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="OPj-fd-lb1">
+                        <rect key="frame" x="24" y="8" width="407" height="53"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zhL-8g-IyI">
+                                <rect key="frame" x="0.0" y="0.0" width="37" height="24.5"/>
+                                <fontDescription key="fontDescription" name="KohinoorBangla-Light" family="Kohinoor Bangla" pointSize="15"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="Login"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1NZ-MK-NWj">
+                                <rect key="frame" x="0.0" y="28.5" width="407" height="24.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="xqO-dh-34A"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="1NZ-MK-NWj" secondAttribute="trailing" id="cOL-rq-JDi"/>
+                        </constraints>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="OPj-fd-lb1" secondAttribute="bottom" constant="8" id="ACN-za-cGf"/>
+                    <constraint firstItem="OPj-fd-lb1" firstAttribute="leading" secondItem="Qb9-YU-8fy" secondAttribute="leading" constant="24" id="Mx7-Oh-2fe"/>
+                    <constraint firstItem="OPj-fd-lb1" firstAttribute="top" secondItem="Qb9-YU-8fy" secondAttribute="top" constant="8" id="dHo-U7-ZYG"/>
+                    <constraint firstAttribute="trailing" secondItem="OPj-fd-lb1" secondAttribute="trailing" constant="24" id="yaL-Yv-J58"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="loginTextField" destination="1NZ-MK-NWj" id="Ij2-jL-8mr"/>
+            </connections>
+            <point key="canvasLocation" x="-432.60869565217394" y="-36.830357142857139"/>
+        </tableViewCell>
+    </objects>
+</document>

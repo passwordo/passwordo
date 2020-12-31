@@ -1,0 +1,80 @@
+//
+//  UrlCell.swift
+//  Passwordo
+//
+//  Created by Boris Goncharov on 12/18/20.
+//  Copyright © 2020 Boris Goncharov. All rights reserved.
+//
+
+import Foundation
+import UIKit
+
+class UrlCell: UITableViewCell, Colorable {
+    
+    @IBOutlet weak var urlLabel: UILabel?
+    
+    let color = DefaultStyle()
+    
+    var item: CheckoutViewModelItem? {
+        didSet {
+            guard let item = item as? CheckoutViewModelUrl else { return }
+            
+            urlLabel?.attributedText = findHttpsRange(string: item.url)
+            
+            backgroundColor = color.Style.color(mainColor: UIColor.AppColors.cellBackgroundColor, darkModeCorlor: UIColor.AppColors.cellBackgroundColorDarkMode)
+        }
+    }
+
+    static var nib: UINib {
+        return UINib(nibName: identifier, bundle: nil)
+    }
+    
+    static var identifier: String {
+        return String(describing: self)
+    }
+    
+    override class func awakeFromNib() {
+        super.awakeFromNib()
+        
+        
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        urlLabel?.text = ""
+    }
+    
+    override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
+        
+        
+        
+        UIMenuController.shared.menuItems = [UIMenuItem(title: "Copy".localized(), action: #selector(UrlCell.copyUrl)), UIMenuItem(title: "Share".localized(), action: #selector(UrlCell.shareUrl)), UIMenuItem(title: "Open in Safari".localized(), action: #selector(UrlCell.openInSafari))]
+        
+        return action == #selector(UrlCell.copyUrl) || action == #selector(UrlCell.shareUrl) || action == #selector(UrlCell.openInSafari)
+    }
+    
+    
+    @objc func copyUrl() {
+        let pasteboard = UIPasteboard.general
+        pasteboard.string = urlLabel?.text
+      }
+    
+    @objc func shareUrl() {
+        let sharingContent = [urlLabel?.text]
+        let ac = UIActivityViewController(activityItems: sharingContent as [Any], applicationActivities: nil)
+        UIApplication.shared.keyWindow?.rootViewController?.present(ac, animated: true)
+      }
+    
+    @objc func openInSafari() {
+        guard let link = URL(string: (urlLabel?.text)!) else { return }
+        UIApplication.shared.open(link)
+      }
+    
+
+    @IBAction func urlButtonPressed(_ sender: Any) {
+        guard let link = URL(string: (urlLabel?.text)!) else { return }
+        UIApplication.shared.open(link)
+    }
+    
+}

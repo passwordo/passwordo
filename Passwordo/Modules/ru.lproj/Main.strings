@@ -1,0 +1,12 @@
+
+/* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "D4D-nG-R2c"; */
+"D4D-nG-R2c.title" = "Item";
+
+/* Class = "UILabel"; text = "Item Login"; ObjectID = "Iml-0R-7p0"; */
+"Iml-0R-7p0.text" = "Item Login";
+
+/* Class = "UILabel"; text = "Item Name"; ObjectID = "SXU-55-GJM"; */
+"SXU-55-GJM.text" = "Item Name";
+
+/* Class = "UINavigationItem"; title = "Passwords"; ObjectID = "cbD-C7-Jou"; */
+"cbD-C7-Jou.title" = "Passwords";
