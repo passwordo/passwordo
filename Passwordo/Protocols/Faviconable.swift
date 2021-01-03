@@ -27,7 +27,7 @@ extension Faviconable where Self: UIResponder {
         
         if urlIsValid(urlString: url) && internetIsEnable() {
             do {
-                try FavIcon.downloadPreferred(url) { [self] result in
+                try FavIcon.downloadPreferred(url, width: 256, height: 256) { [self] result in
                     if case let .success(image) = result {
                         
                         saveImg = image
