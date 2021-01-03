@@ -14,7 +14,7 @@ class EditLoginCell: UITableViewCell {
     
     @IBOutlet weak var loginTextField: UITextField?
     
-    let color = DefaultStyle()
+    let applyColor = DefaultStyle()
     
     var cancellables = Set<AnyCancellable>()
     
@@ -46,7 +46,7 @@ class EditLoginCell: UITableViewCell {
                         .store(in: &cancellables)
             
             
-            backgroundColor = color.Style.color(mainColor: UIColor.AppColors.cellBackgroundColor, darkModeCorlor: UIColor.AppColors.cellBackgroundColorDarkMode)
+            backgroundColor = applyColor.Style.setColor(mainColor: UIColor.AppColors.cellBackgroundColor, darkModeCorlor: UIColor.AppColors.cellBackgroundColorDarkMode)
         }
     }
     

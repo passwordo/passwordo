@@ -16,13 +16,13 @@ class ItemTableViewCell: UITableViewCell {
     @IBOutlet weak var itemDetailLabel: UILabel!
     var itemId: String!
     
-    let color = DefaultStyle()
+    let applyColor = DefaultStyle()
     let mainVC = MainVC()
 
     public func setup() {
-        textLabel?.textColor = color.Style.color(mainColor: UIColor.AppColors.text , darkModeCorlor: UIColor.AppColors.textDarkMode)
-        detailTextLabel?.textColor = color.Style.color(mainColor: UIColor.AppColors.smallText , darkModeCorlor: UIColor.AppColors.smallTextDarkMode)
-        backgroundColor = color.Style.color(mainColor: UIColor.AppColors.cellBackgroundColor , darkModeCorlor: UIColor.AppColors.cellBackgroundColorDarkMode)
+        textLabel?.textColor = applyColor.Style.setColor(mainColor: UIColor.AppColors.text , darkModeCorlor: UIColor.AppColors.textDarkMode)
+        detailTextLabel?.textColor = applyColor.Style.setColor(mainColor: UIColor.AppColors.smallText , darkModeCorlor: UIColor.AppColors.smallTextDarkMode)
+        backgroundColor = applyColor.Style.setColor(mainColor: UIColor.AppColors.cellBackgroundColor , darkModeCorlor: UIColor.AppColors.cellBackgroundColorDarkMode)
     }
 
     

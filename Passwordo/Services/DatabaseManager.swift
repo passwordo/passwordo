@@ -62,8 +62,6 @@ public class DatabaseManager {
         let config = Realm.Configuration(fileURL: fileURL, encryptionKey: key, deleteRealmIfMigrationNeeded: true)
         let realm = try! Realm(configuration: config)
         
-//        print(Realm.Configuration.defaultConfiguration.fileURL)
-        
         return realm.objects(MPassword.self).sorted(byKeyPath: "itemName", ascending: true)
     }
     
@@ -74,17 +72,7 @@ public class DatabaseManager {
         return realm.objects(MPassword.self).filter("itemName CONTAINS[c] '\(searchText)' || userName CONTAINS[c] '\(searchText)' || id CONTAINS[c] '\(searchText)'")
     }
     
-    static func update(item: MPassword) {
-        let key = generateKeyIfNeeded()
-        let config = Realm.Configuration(fileURL: fileURL, encryptionKey: key, deleteRealmIfMigrationNeeded: true)
-        let realm = try! Realm(configuration: config)
-        try! realm.write {
-            realm.add(item, update: Realm.UpdatePolicy.modified)
-        }
-    }
-    
-    
-    static func up_Date(id: String, forKey: String , newValue: String) {
+    static func updateItem(id: String, forKey: String , newValue: String) {
         let key = generateKeyIfNeeded()
         let config = Realm.Configuration(fileURL: fileURL, encryptionKey: key, deleteRealmIfMigrationNeeded: true)
         let realm = try! Realm(configuration: config)

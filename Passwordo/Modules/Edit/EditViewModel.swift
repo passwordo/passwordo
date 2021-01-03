@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 
+// MARK: - EditViewModelType
+
 enum EditViewModelType {
     case nameAndPicture
     case url
@@ -21,12 +23,14 @@ protocol EditViewModelItem {
     var rowCount: Int { get }
 }
 
+// MARK: - EditViewModel
+
 class EditViewModel: NSObject {
     var items = [[EditViewModelItem]]()
     var attributes = [EditViewModelItem]()
     
     let db = DatabaseManager()
-    let color = DefaultStyle()
+    let applyColor = DefaultStyle()
     
     var currentItem: MPassword!
     
@@ -64,6 +68,8 @@ class EditViewModel: NSObject {
     }
 }
 
+// MARK: - UITableViewDataSource, UITableViewDelegate
+
 extension EditViewModel: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items[section].count
@@ -81,39 +87,30 @@ extension EditViewModel: UITableViewDataSource, UITableViewDelegate {
         case .nameAndPicture:
             if let cell = tableView.dequeueReusableCell(withIdentifier: EditNamePictureCell.identifier, for: indexPath) as? EditNamePictureCell {
                 cell.item = item
-                cell.backgroundColor = color.Style.color(mainColor: UIColor.AppColors.cellBackgroundColor, darkModeCorlor: UIColor.AppColors.cellBackgroundColorDarkMode)
+                cell.backgroundColor = applyColor.Style.setColor(mainColor: UIColor.AppColors.cellBackgroundColor, darkModeCorlor: UIColor.AppColors.cellBackgroundColorDarkMode)
                 return cell
             }
         case .url:
             if let cell = tableView.dequeueReusableCell(withIdentifier: EditUrlCell.identifier, for: indexPath) as? EditUrlCell {
                 cell.item = item
-                cell.backgroundColor = color.Style.color(mainColor: UIColor.AppColors.cellBackgroundColor, darkModeCorlor: UIColor.AppColors.cellBackgroundColorDarkMode)
+                cell.backgroundColor = applyColor.Style.setColor(mainColor: UIColor.AppColors.cellBackgroundColor, darkModeCorlor: UIColor.AppColors.cellBackgroundColorDarkMode)
                 return cell
             }
         case .login:
             if let cell = tableView.dequeueReusableCell(withIdentifier: EditLoginCell.identifier, for: indexPath) as? EditLoginCell {
                 cell.item = item
-                cell.backgroundColor = color.Style.color(mainColor: UIColor.AppColors.cellBackgroundColor, darkModeCorlor: UIColor.AppColors.cellBackgroundColorDarkMode)
+                cell.backgroundColor = applyColor.Style.setColor(mainColor: UIColor.AppColors.cellBackgroundColor, darkModeCorlor: UIColor.AppColors.cellBackgroundColorDarkMode)
                 return cell
             }
         case .password:
             if let cell = tableView.dequeueReusableCell(withIdentifier: EditPasswordCell.identifier, for: indexPath) as? EditPasswordCell {
                 cell.item = item
-                cell.backgroundColor = color.Style.color(mainColor: UIColor.AppColors.cellBackgroundColor, darkModeCorlor: UIColor.AppColors.cellBackgroundColorDarkMode)
+                cell.backgroundColor = applyColor.Style.setColor(mainColor: UIColor.AppColors.cellBackgroundColor, darkModeCorlor: UIColor.AppColors.cellBackgroundColorDarkMode)
                 return cell
             }
         }
         return UITableViewCell()
     }
-    
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        if indexPath.section == 0 {
-//            return 82
-//        } else {
-//            return 200
-//        }
-//
-//    }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         let headerHeight: CGFloat
@@ -133,15 +130,13 @@ extension EditViewModel: UITableViewDataSource, UITableViewDelegate {
         
         
         let returnedView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 0)) //set these values as necessary
-        returnedView.backgroundColor = color.Style.color(mainColor: UIColor.AppColors.mainBackground, darkModeCorlor: UIColor.AppColors.mainBackgroundDarkMode)
+        returnedView.backgroundColor = applyColor.Style.setColor(mainColor: UIColor.AppColors.mainBackground, darkModeCorlor: UIColor.AppColors.mainBackgroundDarkMode)
         
         return returnedView
-        
     }
-    
-    
-    
 }
+
+// MARK: - EditViewModelNamePicture
 
 class EditViewModelNamePicture: EditViewModelItem {
     
@@ -164,6 +159,7 @@ class EditViewModelNamePicture: EditViewModelItem {
     }
 }
 
+// MARK: - EditViewModelUrl
 
 class EditViewModelUrl: EditViewModelItem {
     
@@ -182,6 +178,8 @@ class EditViewModelUrl: EditViewModelItem {
     }
 }
 
+// MARK: - EditViewModelLogin
+
 class EditViewModelLogin: EditViewModelItem {
     
     var type: EditViewModelType {
@@ -198,6 +196,8 @@ class EditViewModelLogin: EditViewModelItem {
         self.login = login
     }
 }
+
+// MARK: - EditViewModelPassword
 
 class EditViewModelPassword: EditViewModelItem {
     

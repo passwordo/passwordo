@@ -14,7 +14,7 @@ class EditPasswordCell: UITableViewCell, Colorable {
     
     @IBOutlet weak var passworTextField: UITextField?
     
-    let color = DefaultStyle()
+    let applyColor = DefaultStyle()
     var password: String?
     var isHide = true
     
@@ -46,7 +46,7 @@ class EditPasswordCell: UITableViewCell, Colorable {
                         })
                         .store(in: &cancellables)
 
-            backgroundColor = color.Style.color(mainColor: UIColor.AppColors.cellBackgroundColor, darkModeCorlor: UIColor.AppColors.cellBackgroundColorDarkMode)
+            backgroundColor = applyColor.Style.setColor(mainColor: UIColor.AppColors.cellBackgroundColor, darkModeCorlor: UIColor.AppColors.cellBackgroundColorDarkMode)
         }
     }
     

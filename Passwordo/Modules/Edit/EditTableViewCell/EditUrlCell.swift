@@ -14,7 +14,7 @@ class EditUrlCell: UITableViewCell {
     
     @IBOutlet weak var urlTextField: UITextField?
     
-    let color = DefaultStyle()
+    let applyColor = DefaultStyle()
     var cancellables = Set<AnyCancellable>()
     
     var urlText = ""
@@ -45,7 +45,7 @@ class EditUrlCell: UITableViewCell {
                         .store(in: &cancellables)
             
             
-            backgroundColor = color.Style.color(mainColor: UIColor.AppColors.cellBackgroundColor, darkModeCorlor: UIColor.AppColors.cellBackgroundColorDarkMode)
+            backgroundColor = applyColor.Style.setColor(mainColor: UIColor.AppColors.cellBackgroundColor, darkModeCorlor: UIColor.AppColors.cellBackgroundColorDarkMode)
 
         }
     }

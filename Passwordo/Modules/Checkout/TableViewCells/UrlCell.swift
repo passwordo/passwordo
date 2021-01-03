@@ -13,7 +13,7 @@ class UrlCell: UITableViewCell, Colorable {
     
     @IBOutlet weak var urlLabel: UILabel?
     
-    let color = DefaultStyle()
+    let applyColor = DefaultStyle()
     
     var item: CheckoutViewModelItem? {
         didSet {
@@ -21,7 +21,7 @@ class UrlCell: UITableViewCell, Colorable {
             
             urlLabel?.attributedText = findHttpsRange(string: item.url)
             
-            backgroundColor = color.Style.color(mainColor: UIColor.AppColors.cellBackgroundColor, darkModeCorlor: UIColor.AppColors.cellBackgroundColorDarkMode)
+            backgroundColor = applyColor.Style.setColor(mainColor: UIColor.AppColors.cellBackgroundColor, darkModeCorlor: UIColor.AppColors.cellBackgroundColorDarkMode)
         }
     }
 
@@ -63,7 +63,13 @@ class UrlCell: UITableViewCell, Colorable {
     @objc func shareUrl() {
         let sharingContent = [urlLabel?.text]
         let ac = UIActivityViewController(activityItems: sharingContent as [Any], applicationActivities: nil)
-        UIApplication.shared.keyWindow?.rootViewController?.present(ac, animated: true)
+        let keyWindow = UIApplication.shared.connectedScenes
+                .filter({$0.activationState == .foregroundActive})
+                .map({$0 as? UIWindowScene})
+                .compactMap({$0})
+                .first?.windows
+                .filter({$0.isKeyWindow}).first
+        keyWindow?.rootViewController?.present(ac, animated: true, completion: nil)
       }
     
     @objc func openInSafari() {

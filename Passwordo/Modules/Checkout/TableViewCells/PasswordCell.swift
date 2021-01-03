@@ -17,7 +17,7 @@ class PasswordCell: UITableViewCell, Colorable {
     var passwordHide = true
     var password: String?
     
-    let color = DefaultStyle()
+    let applyColor = DefaultStyle()
     
     var item: CheckoutViewModelItem? {
         didSet {
@@ -25,10 +25,10 @@ class PasswordCell: UITableViewCell, Colorable {
 
             password = item.password
             passwordLabel?.text = "••••••••••••"
-            passwordLabel?.textColor = color.Style.color(mainColor: UIColor.AppColors.text, darkModeCorlor: UIColor.AppColors.textDarkMode)
+            passwordLabel?.textColor = applyColor.Style.setColor(mainColor: UIColor.AppColors.text, darkModeCorlor: UIColor.AppColors.textDarkMode)
             passwordLabel?.font = UIFont.systemFont(ofSize: 25)
             
-            backgroundColor = color.Style.color(mainColor: UIColor.AppColors.cellBackgroundColor, darkModeCorlor: UIColor.AppColors.cellBackgroundColorDarkMode)
+            backgroundColor = applyColor.Style.setColor(mainColor: UIColor.AppColors.cellBackgroundColor, darkModeCorlor: UIColor.AppColors.cellBackgroundColorDarkMode)
         }
     }
     
@@ -68,9 +68,9 @@ class PasswordCell: UITableViewCell, Colorable {
         } else {
             passwordHide = true
             passwordLabel?.text = "••••••••••••"
-            passwordLabel?.textColor = color.Style.color(mainColor: UIColor.AppColors.text, darkModeCorlor: UIColor.AppColors.textDarkMode)
+            passwordLabel?.textColor = applyColor.Style.setColor(mainColor: UIColor.AppColors.text, darkModeCorlor: UIColor.AppColors.textDarkMode)
             passwordLabel?.font = UIFont.systemFont(ofSize: 25)
-            passwordLabel?.textColor = color.Style.color(mainColor: UIColor.AppColors.text, darkModeCorlor: UIColor.AppColors.textDarkMode)
+            passwordLabel?.textColor = applyColor.Style.setColor(mainColor: UIColor.AppColors.text, darkModeCorlor: UIColor.AppColors.textDarkMode)
         }
     }
     
@@ -91,7 +91,14 @@ class PasswordCell: UITableViewCell, Colorable {
     @objc func sharePass() {
         let sharingContent = [password]
         let ac = UIActivityViewController(activityItems: sharingContent as [Any], applicationActivities: nil)
-        UIApplication.shared.keyWindow?.rootViewController?.present(ac, animated: true)
+//        UIApplication.shared.keyWindow?.rootViewController?.present(ac, animated: true)
+        let keyWindow = UIApplication.shared.connectedScenes
+                .filter({$0.activationState == .foregroundActive})
+                .map({$0 as? UIWindowScene})
+                .compactMap({$0})
+                .first?.windows
+                .filter({$0.isKeyWindow}).first
+        keyWindow?.rootViewController?.present(ac, animated: true, completion: nil)
       }
     
     @objc func showHide() {
@@ -109,9 +116,9 @@ class PasswordCell: UITableViewCell, Colorable {
         } else {
             passwordHide = true
             passwordLabel?.text = "••••••••••••"
-            passwordLabel?.textColor = color.Style.color(mainColor: UIColor.AppColors.text, darkModeCorlor: UIColor.AppColors.textDarkMode)
+            passwordLabel?.textColor = applyColor.Style.setColor(mainColor: UIColor.AppColors.text, darkModeCorlor: UIColor.AppColors.textDarkMode)
             passwordLabel?.font = UIFont.systemFont(ofSize: 25)
-            passwordLabel?.textColor = color.Style.color(mainColor: UIColor.AppColors.text, darkModeCorlor: UIColor.AppColors.textDarkMode)
+            passwordLabel?.textColor = applyColor.Style.setColor(mainColor: UIColor.AppColors.text, darkModeCorlor: UIColor.AppColors.textDarkMode)
         }
       }
 }

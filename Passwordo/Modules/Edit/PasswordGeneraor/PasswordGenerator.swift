@@ -56,7 +56,6 @@ public class PasswordGenerator {
         let charSetArray = charSet.sorted()
         
         let randomSeq = generateRandomBytes(lenght: length)
-//        let randomBytes = randomSeq.bytesCopy()
         
         var password: [String] = []
         for byte in randomSeq {
@@ -70,16 +69,10 @@ public class PasswordGenerator {
         var bytes = [UInt8](repeating: 0, count: lenght)
         let _ = SecRandomCopyBytes(kSecRandomDefault, bytes.count, &bytes)
 
-//        guard result == errSecSuccess else {
-//            print("Problem generating random bytes")
-//            return nil
-//        }
-
         return bytes
     }
     
     public func bytesCopy() -> [UInt8] {
         return Array<UInt8>(bytes)
     }
-    
 }

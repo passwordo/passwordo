@@ -7,22 +7,27 @@
 //
 
 import Foundation
-import Security
+//import Security
 import CryptoKit
 
 class KeychainService: NSObject {
     
     class func generateEncryptionKey() -> Data {
-//        let key = Curve25519.KeyAgreement.PrivateKey()
-//        let publicKey = key.rawRepresentation
         
-        var key = Data(count: 64)
-        _ = key.withUnsafeMutableBytes { bytes in
-            SecRandomCopyBytes(kSecRandomDefault, 64, bytes)
-        }
+        let key = Data(count: 64)
+        
+        //        _ = key.withUnsafeMutableBytes { bytes in
+        //            SecRandomCopyBytes(kSecRandomDefault, 64, bytes)
+        //        }
+        
+        let key256 = SymmetricKey(size: .bits256)
+        let sha512MAC = HMAC<SHA512>.authenticationCode(for: key, using: key256)
+        print(sha512MAC)
+        
+        let authenticationCodeData = Data(sha512MAC)
 
-        KeychainService.save(key: "key", data: key)
-        return key
+        _ = KeychainService.save(key: "key", data: authenticationCodeData)
+        return authenticationCodeData
     }
     
     class func save(key: String, data: Data) -> OSStatus {

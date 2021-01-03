@@ -26,7 +26,7 @@ class CheckoutViewModel: NSObject {
     var attributes = [CheckoutViewModelItem]()
     
     let db = DatabaseManager()
-    let color = DefaultStyle()
+    let applyColor = DefaultStyle()
     
     var delegate: DataModelDelegate?
 
@@ -105,7 +105,7 @@ extension CheckoutViewModel: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         let returnedView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 0)) //set these values as necessary
-        returnedView.backgroundColor = color.Style.color(mainColor: UIColor.AppColors.mainBackground, darkModeCorlor: UIColor.AppColors.mainBackgroundDarkMode)
+        returnedView.backgroundColor = applyColor.Style.setColor(mainColor: UIColor.AppColors.mainBackground, darkModeCorlor: UIColor.AppColors.mainBackgroundDarkMode)
         
         return returnedView
         
@@ -127,26 +127,26 @@ extension CheckoutViewModel: UITableViewDataSource, UITableViewDelegate {
         case .nameAndPicture:
             if let cell = tableView.dequeueReusableCell(withIdentifier: NamePictureCell.identifier, for: indexPath) as? NamePictureCell {
                 cell.item = item
-                cell.backgroundColor = color.Style.color(mainColor: UIColor.AppColors.cellBackgroundColor, darkModeCorlor: UIColor.AppColors.cellBackgroundColorDarkMode)
+                cell.backgroundColor = applyColor.Style.setColor(mainColor: UIColor.AppColors.cellBackgroundColor, darkModeCorlor: UIColor.AppColors.cellBackgroundColorDarkMode)
                 return cell
             }
         case .url:
             if let cell = tableView.dequeueReusableCell(withIdentifier: UrlCell.identifier, for: indexPath) as? UrlCell {
                 cell.item = item
-                cell.backgroundColor = color.Style.color(mainColor: UIColor.AppColors.cellBackgroundColor, darkModeCorlor: UIColor.AppColors.cellBackgroundColorDarkMode)
+                cell.backgroundColor = applyColor.Style.setColor(mainColor: UIColor.AppColors.cellBackgroundColor, darkModeCorlor: UIColor.AppColors.cellBackgroundColorDarkMode)
                 return cell
             }
         case .login:
             if let cell = tableView.dequeueReusableCell(withIdentifier: LoginCell.identifier, for: indexPath) as? LoginCell {
                 cell.item = item
  
-                cell.backgroundColor = color.Style.color(mainColor: UIColor.AppColors.cellBackgroundColor, darkModeCorlor: UIColor.AppColors.cellBackgroundColorDarkMode)
+                cell.backgroundColor = applyColor.Style.setColor(mainColor: UIColor.AppColors.cellBackgroundColor, darkModeCorlor: UIColor.AppColors.cellBackgroundColorDarkMode)
                 return cell
             }
         case .password:
             if let cell = tableView.dequeueReusableCell(withIdentifier: PasswordCell.identifier, for: indexPath) as? PasswordCell {
                 cell.item = item
-                cell.backgroundColor = color.Style.color(mainColor: UIColor.AppColors.cellBackgroundColor, darkModeCorlor: UIColor.AppColors.cellBackgroundColorDarkMode)
+                cell.backgroundColor = applyColor.Style.setColor(mainColor: UIColor.AppColors.cellBackgroundColor, darkModeCorlor: UIColor.AppColors.cellBackgroundColorDarkMode)
                 return cell
             }
         }

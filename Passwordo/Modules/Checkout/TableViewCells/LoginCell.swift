@@ -13,7 +13,7 @@ class LoginCell: UITableViewCell {
     
     @IBOutlet weak var loginTextField: UITextField?
         
-    let color = DefaultStyle()
+    let applyColor = DefaultStyle()
     
     var item: CheckoutViewModelItem? {
         didSet {
@@ -23,7 +23,7 @@ class LoginCell: UITableViewCell {
             
             loginTextField?.isEnabled = false 
             
-            backgroundColor = color.Style.color(mainColor: UIColor.AppColors.cellBackgroundColor, darkModeCorlor: UIColor.AppColors.cellBackgroundColorDarkMode)
+            backgroundColor = applyColor.Style.setColor(mainColor: UIColor.AppColors.cellBackgroundColor, darkModeCorlor: UIColor.AppColors.cellBackgroundColorDarkMode)
         }
     }
     
@@ -63,6 +63,12 @@ class LoginCell: UITableViewCell {
     @objc func shareLogin() {
         let sharingContent = [loginTextField?.text]
         let ac = UIActivityViewController(activityItems: sharingContent as [Any], applicationActivities: nil)
-        UIApplication.shared.keyWindow?.rootViewController?.present(ac, animated: true)
+        let keyWindow = UIApplication.shared.connectedScenes
+                .filter({$0.activationState == .foregroundActive})
+                .map({$0 as? UIWindowScene})
+                .compactMap({$0})
+                .first?.windows
+                .filter({$0.isKeyWindow}).first
+        keyWindow?.rootViewController?.present(ac, animated: true, completion: nil)
       }
 }

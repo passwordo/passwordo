@@ -11,7 +11,7 @@ import UIKit
 
 extension UITextField {
     
-    static let color = DefaultStyle()
+    static let applyColor = DefaultStyle()
     
     func setIcon(_ image: UIImage) {
         let iconView = UIImageView(frame: CGRect(x: 20, y: -10, width: 48, height: 48))
@@ -24,7 +24,7 @@ extension UITextField {
     }
     
     func setTextInRow() {
-        backgroundColor = UITextField.color.Style.color(mainColor: UIColor.AppColors.cellBackgroundColor, darkModeCorlor: UIColor.AppColors.cellBackgroundColorDarkMode)
+        backgroundColor = UITextField.applyColor.Style.setColor(mainColor: UIColor.AppColors.cellBackgroundColor, darkModeCorlor: UIColor.AppColors.cellBackgroundColorDarkMode)
         let leftView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 20.0, height: 2.0))
         self.leftView = leftView
         leftViewMode = .always

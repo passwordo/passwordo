@@ -13,7 +13,7 @@ class NamePictureCell: UITableViewCell {
     @IBOutlet weak var nameTextField: UITextField?
     @IBOutlet weak var pictureImageView: UIImageView?
     
-    let color = DefaultStyle()
+    let applyColor = DefaultStyle()
     
     var item: CheckoutViewModelItem? {
         didSet {
@@ -21,7 +21,7 @@ class NamePictureCell: UITableViewCell {
             nameTextField?.text = item.name
             nameTextField?.isEnabled = false
             pictureImageView?.image = item.image
-            backgroundColor = color.Style.color(mainColor: UIColor.AppColors.cellBackgroundColor, darkModeCorlor: UIColor.AppColors.cellBackgroundColorDarkMode)
+            backgroundColor = applyColor.Style.setColor(mainColor: UIColor.AppColors.cellBackgroundColor, darkModeCorlor: UIColor.AppColors.cellBackgroundColorDarkMode)
             
             pictureImageView?.layer.cornerRadius = 8
         }
@@ -37,7 +37,6 @@ class NamePictureCell: UITableViewCell {
     
     override class func awakeFromNib() {
         super.awakeFromNib()
-    
         
     }
     

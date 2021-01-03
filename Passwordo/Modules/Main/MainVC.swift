@@ -78,7 +78,7 @@ class MainVC: UITableViewController, UISearchControllerDelegate, Emptyble {
         
         tableView.tableFooterView = UIView()
         tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 1))
-        tableView.backgroundColor = applyColor.Style.color(mainColor: UIColor.AppColors.mainBackground, darkModeCorlor: UIColor.AppColors.mainBackgroundDarkMode)
+        tableView.backgroundColor = applyColor.Style.setColor(mainColor: UIColor.AppColors.mainBackground, darkModeCorlor: UIColor.AppColors.mainBackgroundDarkMode)
     }
     
     // MARK: - createSections()
@@ -151,7 +151,7 @@ class MainVC: UITableViewController, UISearchControllerDelegate, Emptyble {
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
-        header.contentView.backgroundColor = applyColor.Style.color(mainColor: UIColor.AppColors.sectionHeaderBackground, darkModeCorlor: UIColor.AppColors.sectionHeaderBackgroundDarkMode)
+        header.contentView.backgroundColor = applyColor.Style.setColor(mainColor: UIColor.AppColors.sectionHeaderBackground, darkModeCorlor: UIColor.AppColors.sectionHeaderBackgroundDarkMode)
     }
     
     // MARK: - sectionIndexTitles
@@ -206,7 +206,7 @@ class MainVC: UITableViewController, UISearchControllerDelegate, Emptyble {
     
     @IBAction func addNewItemButtonPressed(_ sender: Any) {
         let newItemVC = EditVC()
-        newItemVC.editModeEnable()
+        newItemVC.enableEditMode()
         navigationController?.pushViewController(newItemVC, animated: true)
     }
 }

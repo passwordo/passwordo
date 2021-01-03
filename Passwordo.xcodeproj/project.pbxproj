@@ -267,8 +267,6 @@
 		A16EB49C24B96BEC00E179E3 /* Passwordo */ = {
 			isa = PBXGroup;
 			children = (
-				A1713B3E2599348100D73469 /* Localizable.strings */,
-				A1713B932599795600D73469 /* Passwordo.entitlements */,
 				A1811F8C2585614900EE8A94 /* Protocols */,
 				A19BCA182584192B00FCF31B /* Services */,
 				A169BC5424BB9E3D006D9BF9 /* Models */,
@@ -278,6 +276,7 @@
 				A16EB4B124B96C5E00E179E3 /* Supporting files */,
 				A1858C79258970450048EA19 /* Coordinator.swift */,
 				A1858C7C258970C90048EA19 /* MainCoordinator.swift */,
+				A1713B3E2599348100D73469 /* Localizable.strings */,
 			);
 			path = Passwordo;
 			sourceTree = "<group>";
@@ -290,6 +289,7 @@
 				A16EB4A624B96BED00E179E3 /* Assets.xcassets */,
 				A16EB4A824B96BED00E179E3 /* LaunchScreen.storyboard */,
 				A19BCA232584286000FCF31B /* FaviconLoader.swift */,
+				A1713B932599795600D73469 /* Passwordo.entitlements */,
 			);
 			path = "Supporting files";
 			sourceTree = "<group>";
@@ -837,7 +837,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Passwordo/Passwordo.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "Passwordo/Supporting files/Passwordo.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = Z4B59577RF;
@@ -860,7 +860,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Passwordo/Passwordo.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "Passwordo/Supporting files/Passwordo.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = Z4B59577RF;

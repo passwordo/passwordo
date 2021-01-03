@@ -140,6 +140,4 @@ class PasswordGeneratorVC: UITableViewController, Colorable {
     @IBAction func didPressRefresh(_ sender: Any) {
         refresh()
     }
-    
-    
 }

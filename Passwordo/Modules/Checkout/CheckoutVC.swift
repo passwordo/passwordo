@@ -13,7 +13,7 @@ import RealmSwift
 
 class CheckoutVC: UIViewController {
     
-    let color = DefaultStyle()
+    let applyColor = DefaultStyle()
     let db = DatabaseManager()
 
     var item: MPassword?
@@ -39,7 +39,7 @@ class CheckoutVC: UIViewController {
     
     private func setupView() {
         
-        view.backgroundColor = color.Style.color(mainColor: UIColor.AppColors.mainBackground, darkModeCorlor: UIColor.AppColors.mainBackgroundDarkMode)
+        view.backgroundColor = applyColor.Style.setColor(mainColor: UIColor.AppColors.mainBackground, darkModeCorlor: UIColor.AppColors.mainBackgroundDarkMode)
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit".localized(), style: .plain, target: self, action: #selector(openEdit))
     }
     
@@ -49,7 +49,7 @@ class CheckoutVC: UIViewController {
         tableView.dataSource = viewModel
         tableView.delegate = viewModel
         tableView.allowsSelection = false
-        tableView.backgroundColor = color.Style.color(mainColor: UIColor.AppColors.mainBackground, darkModeCorlor: UIColor.AppColors.mainBackgroundDarkMode)
+        tableView.backgroundColor = applyColor.Style.setColor(mainColor: UIColor.AppColors.mainBackground, darkModeCorlor: UIColor.AppColors.mainBackgroundDarkMode)
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 1))
         tableView.translatesAutoresizingMaskIntoConstraints = false

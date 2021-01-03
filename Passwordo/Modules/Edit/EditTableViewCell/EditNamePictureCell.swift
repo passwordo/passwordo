@@ -16,11 +16,11 @@ class EditNamePictureCell: UITableViewCell, Faviconable {
     @IBOutlet weak var nameTextField: UITextField?
     @IBOutlet weak var pictureImageView: UIImageView?
         
-    let color = DefaultStyle()
-    var newUrl: String?
-    var imageName: String?
+    let applyColor = DefaultStyle()
     var cancellables = Set<AnyCancellable>()
     
+    var newUrl: String?
+    var imageName: String?
     var nameText: String?
     var itemImage: UIImage?
     
@@ -28,49 +28,66 @@ class EditNamePictureCell: UITableViewCell, Faviconable {
         didSet {
             guard let item = item as? EditViewModelNamePicture else { return }
             
-            if item.name != "" {
-                nameTextField?.text = item.name
-            } else if nameText != nil {
-                nameTextField?.text = nameText
-            }
-            
             itemImage = FilesHandling.getImage(withName: item.imageName)
             
-            nameTextField?.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+            nameTextField?.text = item.name != "" ? item.name : nameText
+            pictureImageView?.image = itemImage != nil ? itemImage : item.image
             
-            nameTextField?.isEnabled = true
-            nameTextField?.becomeFirstResponder()
-            
-            if itemImage != nil {
-                pictureImageView?.image = itemImage
-            } else {
-            
-                pictureImageView?.image = item.image
-            }
             imageName = item.imageName
-            backgroundColor = color.Style.color(mainColor: UIColor.AppColors.cellBackgroundColor, darkModeCorlor: UIColor.AppColors.cellBackgroundColorDarkMode)
-            
 
-            NotificationCenter.default.addObserver(self, selector: #selector(handleUrlUpdate), name: .didUpdateUrl, object: nil)
-            
-            NotificationCenter.default.addObserver(self, selector: #selector(handleNameUpdate), name: .didUpdateName, object: nil)
-            
-            let textFieldPublisher = NotificationCenter.default
-                        .publisher(for: UITextField.textDidChangeNotification, object: nameTextField)
-                        .map( {
-                            ($0.object as? UITextField)?.text
-                        })
-                    
-                    textFieldPublisher
-                        .receive(on: RunLoop.main)
-                        .sink(receiveValue: { value in
-                            NotificationCenter.default.post(name: .didUpdateName, object: value)
-                        })
-                        .store(in: &cancellables)
-            
+            setupTextField()
+            setupObservers()
+
             pictureImageView?.layer.cornerRadius = 8
         }
     }
+    
+    // MARK: - setupTextField()
+    
+    private func setupTextField() {
+        
+        nameTextField?.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        nameTextField?.isEnabled = true
+        nameTextField?.becomeFirstResponder()
+        backgroundColor = applyColor.Style.setColor(mainColor: UIColor.AppColors.cellBackgroundColor, darkModeCorlor: UIColor.AppColors.cellBackgroundColorDarkMode)
+    }
+    
+    // MARK: - setupObservers()
+    
+    private func setupObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(handleUrlUpdate), name: .didUpdateUrl, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(handleNameUpdate), name: .didUpdateName, object: nil)
+        
+        let textFieldPublisher = NotificationCenter.default
+                    .publisher(for: UITextField.textDidChangeNotification, object: nameTextField)
+                    .map( {
+                        ($0.object as? UITextField)?.text
+                    })
+                
+                textFieldPublisher
+                    .receive(on: RunLoop.main)
+                    .sink(receiveValue: { value in
+                        NotificationCenter.default.post(name: .didUpdateName, object: value)
+                    })
+                    .store(in: &cancellables)
+    }
+    
+    static var nib: UINib {
+        return UINib(nibName: identifier, bundle: nil)
+    }
+    
+    static var identifier: String {
+        return String(describing: self)
+    }
+    
+    override class func awakeFromNib() {
+        super.awakeFromNib()
+    
+        
+    }
+    
+    // MARK: - @objc funcs
     
     @objc func textFieldDidChange(_ textField: UITextField) {
         nameText = textField.text ?? ""
@@ -94,21 +111,6 @@ class EditNamePictureCell: UITableViewCell, Faviconable {
             })
         }
     }
-    
-    static var nib: UINib {
-        return UINib(nibName: identifier, bundle: nil)
-    }
-    
-    static var identifier: String {
-        return String(describing: self)
-    }
-    
-    override class func awakeFromNib() {
-        super.awakeFromNib()
-    
-        
-    }
-    
     
 //    override func prepareForReuse() {
 //        super.prepareForReuse()
