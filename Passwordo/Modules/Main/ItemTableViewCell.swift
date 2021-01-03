@@ -35,7 +35,7 @@ class ItemTableViewCell: UITableViewCell {
         var id = item.serviceURL
         let vowels: Set<Character> = ["/", "\\", ":", ";"]
         id.removeAll(where: { vowels.contains($0) })
-        itemImage?.image = Cache.getImageFromCache(named: item.imageURL)
+        itemImage?.image = FilesHandling.getImage(withName: item.imageURL)
         self.itemId = item.id
     }
 }

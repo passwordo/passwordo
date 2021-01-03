@@ -18,11 +18,19 @@ class EditLoginCell: UITableViewCell {
     
     var cancellables = Set<AnyCancellable>()
     
+    var newLogin = ""
+    
     var item: EditViewModelItem? {
         didSet {
             guard let item = item as? EditViewModelLogin else { return }
             
-            loginTextField?.text = item.login
+            if item.login != "" {
+                loginTextField?.text = item.login
+            } else if newLogin != nil {
+                loginTextField?.text = newLogin
+            }
+            
+            loginTextField?.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
             
             let textFieldPublisher = NotificationCenter.default
                         .publisher(for: UITextField.textDidChangeNotification, object: loginTextField)
@@ -42,6 +50,10 @@ class EditLoginCell: UITableViewCell {
         }
     }
     
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        newLogin = textField.text ?? ""
+    }
+    
     static var nib: UINib {
         return UINib(nibName: identifier, bundle: nil)
     }
@@ -56,10 +68,10 @@ class EditLoginCell: UITableViewCell {
         
     }
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        
-        loginTextField?.text = ""
-    }
+//    override func prepareForReuse() {
+//        super.prepareForReuse()
+//        
+//        loginTextField?.text = ""
+//    }
     
 }

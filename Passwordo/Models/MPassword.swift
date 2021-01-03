@@ -24,24 +24,7 @@ class MPassword: Object {
         return "id"
     }
     
-    var image: UIImage {
-        let scale = UIScreen.main.scale
-
-        let frame = CGRect(x: 0, y: 0, width: 36 * scale, height: 36 * scale)
-
-        let label = UILabel(frame: frame)
-        label.textAlignment = .center
-        label.backgroundColor = .lightGray
-        label.textColor = .white
-        label.font = UIFont.boldSystemFont(ofSize: 28 * scale)
-        label.text = String(itemName[itemName.startIndex]).uppercased()
-
-        UIGraphicsBeginImageContext(frame.size)
-        let context = UIGraphicsGetCurrentContext()
-        label.layer.render(in: context!)
-        let image = UIGraphicsGetImageFromCurrentImageContext()!
-        return UIImage(cgImage: image.cgImage!, scale: scale, orientation: .up)
-    }
+    var image: UIImage = UIImage(named: "noimage")!
     
     convenience init(itemName: String, userName: String, password: String, serviceURL: String, imageURL: String) {
         self.init()

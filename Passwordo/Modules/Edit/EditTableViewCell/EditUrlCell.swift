@@ -17,11 +17,19 @@ class EditUrlCell: UITableViewCell {
     let color = DefaultStyle()
     var cancellables = Set<AnyCancellable>()
     
+    var urlText = ""
     
     var item: EditViewModelItem? {
         didSet {
             guard let item = item as? EditViewModelUrl else { return }
-            urlTextField?.text = item.url
+            
+            if item.url != "" {
+                urlTextField?.text = item.url
+            } else if urlText != nil {
+                urlTextField?.text = urlText
+            }
+            
+            urlTextField?.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
             
             let textFieldPublisher = NotificationCenter.default
                         .publisher(for: UITextField.textDidChangeNotification, object: urlTextField)
@@ -42,6 +50,10 @@ class EditUrlCell: UITableViewCell {
         }
     }
     
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        urlText = textField.text ?? ""
+    }
+    
     static var nib: UINib {
         return UINib(nibName: identifier, bundle: nil)
     }
@@ -56,10 +68,10 @@ class EditUrlCell: UITableViewCell {
         
     }
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        
-        urlTextField?.text = ""
-    }
-    
+//    override func prepareForReuse() {
+//        super.prepareForReuse()
+//
+//        urlTextField?.text = ""
+//    }
+//
 }

@@ -21,16 +21,19 @@ class EditVC: UIViewController, Randomable {
     var generatedImageName: String?
     var editMode = true
     
-    var newName = ""
-    var newUrl = ""
-    var newLogin = ""
+    @Published var newName: String!
+    @Published var newUrl: String!
+    @Published var newLogin: String!
     @Published var newPassword = ""
+    
+    @Published var checker: [Bool] = [false, false, false]
         
     var tableView = UITableView(frame: .zero, style: .grouped)
+    private var subscribers = Set<AnyCancellable>()
  
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         NotificationCenter.default.addObserver(self, selector: #selector(handleNameUpdate), name: .didUpdateName, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleUrlUpdate), name: .didUpdateUrl, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleLoginUpdate), name: .didUpdateLogin, object: nil)
@@ -41,13 +44,30 @@ class EditVC: UIViewController, Randomable {
         if !editMode {
             generatedImageName = randomString(length: 12)
         }
-        
 
         
         setupLaunch()
         setupTableView()
         setupCells()
         setupView()
+        
+        obderveForm()
+    }
+    
+    private func obderveForm() {
+        
+        $checker.sink { (checks) in
+            if checks.allSatisfy({$0}) {
+                self.navigationItem.rightBarButtonItem?.isEnabled = true
+            } else {
+                self.navigationItem.rightBarButtonItem?.isEnabled = false
+            }
+        }.store(in: &subscribers)
+        
+        
+//        $newName.sink { [unowned self] text in
+//            self.navigationItem.rightBarButtonItem?.isEnabled = text?.isEmpty == false
+//        }.store(in: &subscribers)
     }
 
     
@@ -70,6 +90,7 @@ class EditVC: UIViewController, Randomable {
     @objc func handleNameUpdate(notification: Notification) {
         if let item = notification.object as? String {
             newName = item
+            checker[0] = newName.isEmpty ? false : true
         }
     }
     
@@ -77,12 +98,14 @@ class EditVC: UIViewController, Randomable {
     @objc func handleUrlUpdate(notification: Notification) {
         if let item = notification.object as? String {
             newUrl = item
+            checker[1] = newUrl.isEmpty ? false : true
         }
     }
     
     @objc func handleLoginUpdate(notification: Notification) {
         if let item = notification.object as? String {
             newLogin = item
+            checker[2] = newLogin.isEmpty ? false : true
         }
     }
     
@@ -150,7 +173,7 @@ class EditVC: UIViewController, Randomable {
         if editMode {
             updateItem()
         } else {
-            let newPass = MPassword(itemName: newName, userName: newLogin, password: newPassword, serviceURL: newUrl, imageURL: generatedImageName!)
+            let newPass = MPassword(itemName: newName!, userName: newLogin, password: newPassword, serviceURL: newUrl!, imageURL: generatedImageName!)
             DatabaseManager.saveToDataBase(item: newPass)
         }
         navigationController?.popViewController(animated: false)
@@ -159,7 +182,7 @@ class EditVC: UIViewController, Randomable {
     func updateItem() {
         
         if newName != "" && newName != item?.itemName {
-            DatabaseManager.up_Date(id: item!.id, forKey: "itemName", newValue: newName)
+            DatabaseManager.up_Date(id: item!.id, forKey: "itemName", newValue: newName!)
         }
         if newUrl != "" && newUrl != item?.serviceURL {
             DatabaseManager.up_Date(id: item!.id, forKey: "serviceURL", newValue: newUrl)

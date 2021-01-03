@@ -12,9 +12,9 @@ import EmptyDataSet_Swift
 
 class MainVC: UITableViewController, UISearchControllerDelegate, Emptyble {
 
-    let color = DefaultStyle()
+    let applyColor = DefaultStyle()
     var db = DatabaseManager()
-    weak var delegate: DataModelDelegate?
+    weak var dataDelegate: DataModelDelegate?
     
     var passwordItems: Results<MPassword>!
     
@@ -31,7 +31,6 @@ class MainVC: UITableViewController, UISearchControllerDelegate, Emptyble {
         super.viewDidLoad()
         
         passwordItems = DatabaseManager.all()
-        print(passwordItems.count)
         setupView()
         setupObservers()
         emptyTableView(forEmptyDataSet: tableView)
@@ -47,16 +46,17 @@ class MainVC: UITableViewController, UISearchControllerDelegate, Emptyble {
         
         passwordItems = DatabaseManager.all()
         createSections()
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
+        self.tableView.reloadData()
+    
     }
     
     // MARK: - setupObservers()
     
     private func setupObservers() {
+        
         NotificationCenter.default.addObserver(self, selector: #selector(reload), name: NSNotification.Name(rawValue: "Data"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(searchReload), name: NSNotification.Name(rawValue: "searchData"), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadAfterSearch), name: NSNotification.Name(rawValue: "searchData"), object: nil)
     }
     
     // MARK: - setupView()
@@ -71,14 +71,14 @@ class MainVC: UITableViewController, UISearchControllerDelegate, Emptyble {
         
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.delegate = self
-        //
+        
         navigationItem.hidesSearchBarWhenScrolling = false
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.largeTitleDisplayMode = .automatic
-        //
+        
         tableView.tableFooterView = UIView()
         tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 1))
-        tableView.backgroundColor = color.Style.color(mainColor: UIColor.AppColors.mainBackground, darkModeCorlor: UIColor.AppColors.mainBackgroundDarkMode)
+        tableView.backgroundColor = applyColor.Style.color(mainColor: UIColor.AppColors.mainBackground, darkModeCorlor: UIColor.AppColors.mainBackgroundDarkMode)
     }
     
     // MARK: - createSections()
@@ -151,7 +151,7 @@ class MainVC: UITableViewController, UISearchControllerDelegate, Emptyble {
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
-        header.contentView.backgroundColor = color.Style.color(mainColor: UIColor.AppColors.sectionHeaderBackground, darkModeCorlor: UIColor.AppColors.sectionHeaderBackgroundDarkMode)
+        header.contentView.backgroundColor = applyColor.Style.color(mainColor: UIColor.AppColors.sectionHeaderBackground, darkModeCorlor: UIColor.AppColors.sectionHeaderBackgroundDarkMode)
     }
     
     // MARK: - sectionIndexTitles
@@ -170,7 +170,7 @@ class MainVC: UITableViewController, UISearchControllerDelegate, Emptyble {
             let item = passwordItems.first(where: { $0.id == loginValue[indexPath.row] })
             
             if editingStyle == .delete {
-                Cache.deleteFromCache(name: "\(item!.imageURL).png")
+                FilesHandling.deleteImage(withName: "\(item!.imageURL).png")
                 DatabaseManager.deleteFromDataBase(item: item!)
                 reload()
             }
@@ -185,12 +185,11 @@ class MainVC: UITableViewController, UISearchControllerDelegate, Emptyble {
             
             let vc = CheckoutVC()
             vc.didRecieveDataUpdate(data: item!)
-            //            vc.setupData(item: item!)
             navigationController?.pushViewController(vc, animated: true)
         }
     }
     
-    // MARK: - @objc
+    // MARK: - @objc funcs
     
     @objc func reload() {
         passwordItems = DatabaseManager.all()
@@ -200,17 +199,12 @@ class MainVC: UITableViewController, UISearchControllerDelegate, Emptyble {
         }
     }
     
-    @objc func searchReload() {
+    @objc func reloadAfterSearch() {
         createSections()
         tableView.reloadData()
     }
     
-    @IBAction func addNewItem(_ sender: Any) {
-        
-        //        let newItemVC = NewPasswordViewController()
-        //        present(newItemVC, animated: true, completion: nil)
-        
-//        let newItemVC = EurekaNewPasswordVC()
+    @IBAction func addNewItemButtonPressed(_ sender: Any) {
         let newItemVC = EditVC()
         newItemVC.editModeEnable()
         navigationController?.pushViewController(newItemVC, animated: true)

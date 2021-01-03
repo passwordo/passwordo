@@ -37,7 +37,7 @@ class CheckoutViewModel: NSObject {
         
         self.item = item
         
-        let image = Cache.getImageFromCache(named: item.imageURL) ?? UIImage(named: "fb")
+        let image = FilesHandling.getImage(withName: item.imageURL) ?? UIImage(named: "fb")
         
         let nameAndPictureItem = CheckoutViewModelNamePicture(name: item.itemName, image: image!)
         var nameImg = [CheckoutViewModelItem]()

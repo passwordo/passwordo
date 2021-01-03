@@ -17,6 +17,7 @@ class EditPasswordCell: UITableViewCell, Colorable {
     let color = DefaultStyle()
     var password: String?
     var isHide = true
+    
     var cancellables = Set<AnyCancellable>()
     
     var item: EditViewModelItem? {
@@ -64,16 +65,17 @@ class EditPasswordCell: UITableViewCell, Colorable {
         
     }
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        
-        passworTextField?.text = ""
-    }
+//    override func prepareForReuse() {
+//        super.prepareForReuse()
+//
+//        passworTextField?.text = ""
+//    }
     
     @objc func handlePasswordGenerated(notification: Notification) {
         if let item = notification.object as? String {
             passworTextField?.text = item
             password = item
+            
         }
         
     }

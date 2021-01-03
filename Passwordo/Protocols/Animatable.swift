@@ -16,19 +16,19 @@ protocol Animatable {
 
 extension Animatable where Self: UIViewController {
     
-    func showErrorToast(errorMessage: String) {
-        
-        let iconText = ["🤔", "😳", "🙄", "😶"].randomElement()!
+    func showToast(state: Theme, message: String) {
         
         var config = SwiftMessages.Config()
         config.presentationContext = .window(windowLevel: .normal)
 
-        let error = MessageView.viewFromNib(layout: .cardView)
-        error.configureTheme(.error)
-        error.configureContent(title: "Error", body: errorMessage, iconText: iconText)
-        error.button?.isHidden = true
-        error.configureDropShadow()
-
-        SwiftMessages.show(config: config, view: error)
+        let toast = MessageView.viewFromNib(layout: .cardView)
+        toast.configureTheme(state)
+        toast.configureContent(body: message)
+        toast.button?.isHidden = true
+        toast.configureDropShadow()
+        
+        DispatchQueue.main.async {
+            SwiftMessages.show(config: config, view: toast)
+        }
     }
 }

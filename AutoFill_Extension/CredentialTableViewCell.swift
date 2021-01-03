@@ -23,7 +23,7 @@ class CredentialTableViewCell: UITableViewCell {
         itemImage?.layer.cornerRadius = 6
         itemImage?.layer.masksToBounds = true
 
-        itemImage?.image = Cache.getImageFromCache(named: item.imageURL)
+        itemImage?.image = FilesHandling.getImage(withName: item.imageURL)
     }
     
 }

@@ -21,14 +21,32 @@ class EditNamePictureCell: UITableViewCell, Faviconable {
     var imageName: String?
     var cancellables = Set<AnyCancellable>()
     
+    var nameText: String?
+    var itemImage: UIImage?
+    
     var item: EditViewModelItem? {
         didSet {
             guard let item = item as? EditViewModelNamePicture else { return }
             
-            nameTextField?.text = item.name
+            if item.name != "" {
+                nameTextField?.text = item.name
+            } else if nameText != nil {
+                nameTextField?.text = nameText
+            }
+            
+            itemImage = FilesHandling.getImage(withName: item.imageName)
+            
+            nameTextField?.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+            
             nameTextField?.isEnabled = true
             nameTextField?.becomeFirstResponder()
-            pictureImageView?.image = item.image
+            
+            if itemImage != nil {
+                pictureImageView?.image = itemImage
+            } else {
+            
+                pictureImageView?.image = item.image
+            }
             imageName = item.imageName
             backgroundColor = color.Style.color(mainColor: UIColor.AppColors.cellBackgroundColor, darkModeCorlor: UIColor.AppColors.cellBackgroundColorDarkMode)
             
@@ -54,12 +72,16 @@ class EditNamePictureCell: UITableViewCell, Faviconable {
         }
     }
     
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        nameText = textField.text ?? ""
+    }
+    
     @objc func handleNameUpdate() {
         if nameTextField?.text?.isEmpty == true && (newUrl?.isEmpty == true || !urlIsValid(urlString: newUrl)) {
             pictureImageView?.image = UIImage(named: "noimage")
         } else if newUrl?.isEmpty == true || !urlIsValid(urlString: newUrl) {
             generateImageForItem(itemName: (nameTextField?.text)!, with: imageName!)
-        self.pictureImageView?.image = Cache.getImageFromCache(named: self.imageName!)
+        self.pictureImageView?.image = FilesHandling.getImage(withName: self.imageName!)
         }
     }
     
@@ -68,7 +90,7 @@ class EditNamePictureCell: UITableViewCell, Faviconable {
             
             newUrl = item
             downloadFaviconForUrl(for: newUrl!, with: (nameTextField?.text!)!, imageName: imageName!, complition: {
-                self.pictureImageView?.image = Cache.getImageFromCache(named: self.imageName!)
+                self.pictureImageView?.image = FilesHandling.getImage(withName: self.imageName!)
             })
         }
     }
@@ -88,9 +110,9 @@ class EditNamePictureCell: UITableViewCell, Faviconable {
     }
     
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        
-        pictureImageView?.image = nil
-    }
+//    override func prepareForReuse() {
+//        super.prepareForReuse()
+//
+//        pictureImageView?.image = nil
+//    }
 }

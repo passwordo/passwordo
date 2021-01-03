@@ -37,7 +37,7 @@ class EditViewModel: NSObject {
         
         if item != nil {
             self.currentItem = item
-            image = Cache.getImageFromCache(named: item!.imageURL)
+            image = FilesHandling.getImage(withName: item!.imageURL)
             if image == nil {
                 image = UIImage(named: "noimage")
             }
@@ -138,6 +138,7 @@ extension EditViewModel: UITableViewDataSource, UITableViewDelegate {
         return returnedView
         
     }
+    
     
     
 }

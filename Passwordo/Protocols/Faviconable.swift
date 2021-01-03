@@ -32,10 +32,7 @@ extension Faviconable where Self: UIResponder {
                         
                         saveImg = image
                         
-//                            saveImg = cropToBounds(image: image, width: 50, height: 50)
-                        
-                        
-                        guard Cache.saveToCache(image: saveImg!, imageID: imageName) else { return }
+                        FilesHandling.saveImage(image: saveImg!, withName: imageName)
                         complition()
                     } else if case .failure(_) = result {
                         generateImageForItem(itemName: itemName, with: imageName)
@@ -44,11 +41,19 @@ extension Faviconable where Self: UIResponder {
                     
                 }
             } catch {
-                generateImageForItem(itemName: itemName, with: imageName)
+                if !itemName.isEmpty {
+                    generateImageForItem(itemName: itemName, with: imageName)
+                } else {
+                    FilesHandling.saveImage(image: UIImage(named: "noimage")!, withName: imageName)
+                }
                 complition()
             }
         } else {
-            generateImageForItem(itemName: itemName, with: imageName)
+            if !itemName.isEmpty {
+                generateImageForItem(itemName: itemName, with: imageName)
+            } else {
+                FilesHandling.saveImage(image: UIImage(named: "noimage")!, withName: imageName)
+            }
             complition()
         }
     }
@@ -74,44 +79,9 @@ extension Faviconable where Self: UIResponder {
             label.layer.render(in: context!)
             let image = UIGraphicsGetImageFromCurrentImageContext()!
             saveImg = UIImage(cgImage: image.cgImage!, scale: scale, orientation: .up)
-            Cache.saveToCache(image: saveImg!, imageID: imageName)
+            FilesHandling.saveImage(image: saveImg!, withName: imageName)
         }
     }
-    
-    func cropToBounds(image: UIImage, width: Double, height: Double) -> UIImage {
-
-            let cgimage = image.cgImage!
-            let contextImage: UIImage = UIImage(cgImage: cgimage)
-            let contextSize: CGSize = contextImage.size
-            var posX: CGFloat = 0.0
-            var posY: CGFloat = 0.0
-            var cgwidth: CGFloat = CGFloat(width)
-            var cgheight: CGFloat = CGFloat(height)
-
-            // See what size is longer and create the center off of that
-            if contextSize.width > contextSize.height {
-                posX = ((contextSize.width - contextSize.height) / 2)
-                posY = 0
-                cgwidth = contextSize.height
-                cgheight = contextSize.height
-            } else {
-                posX = 0
-                posY = ((contextSize.height - contextSize.width) / 2)
-                cgwidth = contextSize.width
-                cgheight = contextSize.width
-            }
-
-            let rect: CGRect = CGRect(x: posX, y: posY, width: cgwidth, height: cgheight)
-
-            // Create bitmap image from context using the rect
-            let imageRef: CGImage = cgimage.cropping(to: rect)!
-
-            // Create a new image based on the imageRef and rotate back to the original orientation
-            let image: UIImage = UIImage(cgImage: imageRef, scale: image.scale, orientation: image.imageOrientation)
-
-            return image
-        }
-    
     
     func urlIsValid (urlString: String?) -> Bool {
         if let urlString = urlString {
