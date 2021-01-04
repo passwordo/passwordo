@@ -25,7 +25,7 @@ class EditUrlCell: UITableViewCell {
             
             if item.url != "" {
                 urlTextField?.text = item.url
-            } else if urlText != nil {
+            } else if !urlText.isEmpty {
                 urlTextField?.text = urlText
             }
             

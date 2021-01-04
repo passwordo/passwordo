@@ -26,7 +26,7 @@ class EditLoginCell: UITableViewCell {
             
             if item.login != "" {
                 loginTextField?.text = item.login
-            } else if newLogin != nil {
+            } else if !newLogin.isEmpty {
                 loginTextField?.text = newLogin
             }
             

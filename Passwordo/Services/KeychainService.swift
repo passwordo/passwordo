@@ -7,7 +7,6 @@
 //
 
 import Foundation
-//import Security
 import CryptoKit
 
 class KeychainService: NSObject {
@@ -22,7 +21,6 @@ class KeychainService: NSObject {
         
         let key256 = SymmetricKey(size: .bits256)
         let sha512MAC = HMAC<SHA512>.authenticationCode(for: key, using: key256)
-        print(sha512MAC)
         
         let authenticationCodeData = Data(sha512MAC)
 

@@ -47,6 +47,7 @@ class EditVC: UIViewController, Randomable {
         setupObservers()
         
         observeForm()
+        print(newName)
     }
     
     // MARK: - setupLaunch()
@@ -55,8 +56,10 @@ class EditVC: UIViewController, Randomable {
         
         if editMode {
             viewModel = EditViewModel(item: item!)
+            checker = [true, true, true]
         } else {
             item = MPassword(itemName: "", userName: "", password: "", serviceURL: "", imageURL: generatedImageName!)
+            checker = [false, false, false]
         }
     }
     
@@ -123,7 +126,7 @@ class EditVC: UIViewController, Randomable {
     // MARK: - observeForm()
     
     private func observeForm() {
-        
+
         $checker.sink { (checks) in
             if checks.allSatisfy({$0}) {
                 self.navigationItem.rightBarButtonItem?.isEnabled = true
@@ -144,13 +147,13 @@ class EditVC: UIViewController, Randomable {
     
     func updateItem() {
         
-        if newName != "" && newName != item?.itemName {
+        if newName != nil && newName != item?.itemName {
             DatabaseManager.updateItem(id: item!.id, forKey: "itemName", newValue: newName!)
         }
-        if newUrl != "" && newUrl != item?.serviceURL {
+        if newUrl != nil && newUrl != item?.serviceURL {
             DatabaseManager.updateItem(id: item!.id, forKey: "serviceURL", newValue: newUrl)
         }
-        if newLogin != "" && newLogin != item?.userName {
+        if newLogin != nil && newLogin != item?.userName {
             DatabaseManager.updateItem(id: item!.id, forKey: "userName", newValue: newLogin)
         }
         if newPassword != "" && newPassword != item?.passwordString {
