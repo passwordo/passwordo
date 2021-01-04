@@ -50,8 +50,11 @@ class CheckoutViewModel: NSObject {
         let loginItem = CheckoutViewModelLogin(login: item.userName)
         attributes.append(loginItem)
         
-        let passwordItem = CheckoutViewModelPassword(password: item.passwordString)
-        attributes.append(passwordItem)
+        if !item.passwordString.isEmpty {
+        
+            let passwordItem = CheckoutViewModelPassword(password: item.passwordString)
+            attributes.append(passwordItem)
+        }
         
         items.append(attributes)
     }

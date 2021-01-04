@@ -18,6 +18,9 @@ protocol Faviconable {
 extension Faviconable where Self: UIResponder {
     
     func downloadFaviconForUrl(for url: String, with itemName: String, imageName: String, complition: @escaping () -> Void) {
+        
+        print("name: \(itemName)")
+        print("name: \(url)")
 
         var saveImg: UIImage?
         

@@ -47,7 +47,6 @@ class EditVC: UIViewController, Randomable {
         setupObservers()
         
         observeForm()
-        print(newName)
     }
     
     // MARK: - setupLaunch()
@@ -156,7 +155,7 @@ class EditVC: UIViewController, Randomable {
         if newLogin != nil && newLogin != item?.userName {
             DatabaseManager.updateItem(id: item!.id, forKey: "userName", newValue: newLogin)
         }
-        if newPassword != "" && newPassword != item?.passwordString {
+        if newPassword != item?.passwordString {
             DatabaseManager.updateItem(id: item!.id, forKey: "passwordString", newValue: newPassword)
         }
     }

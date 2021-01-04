@@ -60,9 +60,10 @@ class EditViewModel: NSObject {
         
         let loginItem = EditViewModelLogin(login: currentItem.userName)
         attributes.append(loginItem)
-        
+  
         let passwordItem = EditViewModelPassword(password: currentItem.passwordString)
         attributes.append(passwordItem)
+        
         
         items.append(attributes)
     }

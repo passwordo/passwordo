@@ -15,7 +15,8 @@ class EditNamePictureCell: UITableViewCell, Faviconable {
     
     @IBOutlet weak var nameTextField: UITextField?
     @IBOutlet weak var pictureImageView: UIImageView?
-        
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     let applyColor = DefaultStyle()
     var cancellables = Set<AnyCancellable>()
     
@@ -26,6 +27,8 @@ class EditNamePictureCell: UITableViewCell, Faviconable {
     
     var item: EditViewModelItem? {
         didSet {
+            
+            activityIndicator.isHidden = true
             guard let item = item as? EditViewModelNamePicture else { return }
             
             itemImage = FilesHandling.getImage(withName: item.imageName)
@@ -87,6 +90,17 @@ class EditNamePictureCell: UITableViewCell, Faviconable {
         
     }
     
+    private func startActivityIndicator() {
+        self.pictureImageView?.image = UIImage(named: "white")
+        self.activityIndicator.isHidden = false
+        self.activityIndicator.startAnimating()
+    }
+    
+    private func stopActivityIndicator() {
+        self.activityIndicator.stopAnimating()
+        self.activityIndicator.isHidden = true
+    }
+    
     // MARK: - @objc funcs
     
     @objc func textFieldDidChange(_ textField: UITextField) {
@@ -106,8 +120,11 @@ class EditNamePictureCell: UITableViewCell, Faviconable {
         if let item = notification.object as? String {
             
             newUrl = item
+            startActivityIndicator()
             downloadFaviconForUrl(for: newUrl!, with: (nameTextField?.text!)!, imageName: imageName!, complition: {
+                
                 self.pictureImageView?.image = FilesHandling.getImage(withName: self.imageName!)
+                self.stopActivityIndicator()
             })
         }
     }
