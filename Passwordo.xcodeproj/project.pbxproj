@@ -47,6 +47,7 @@
 		A18D22B9259A9D1200EAF073 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1713BCA2599C34500D73469 /* MainInterface.storyboard */; };
 		A18D22BA259AA69D00EAF073 /* CredentialProviderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1713BC82599C34500D73469 /* CredentialProviderViewController.swift */; };
 		A18D22BD259AC01900EAF073 /* Real+extenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18D22BC259AC01900EAF073 /* Real+extenstion.swift */; };
+		A18EB40F25A40A16000E5194 /* IconCases.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18EB40E25A40A16000E5194 /* IconCases.swift */; };
 		A19041C625919C570083CA59 /* EditUrlCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A19041C525919C570083CA59 /* EditUrlCell.xib */; };
 		A19041C925919EDD0083CA59 /* EditUrlCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19041C825919EDD0083CA59 /* EditUrlCell.swift */; };
 		A19041CE2591A6380083CA59 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19041CD2591A6380083CA59 /* UIView+Extension.swift */; };
@@ -147,6 +148,7 @@
 		A1858CB92589D5150048EA19 /* Emptyble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emptyble.swift; sourceTree = "<group>"; };
 		A18D22A0259A82A100EAF073 /* ASCredentialServiceIdentifier+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ASCredentialServiceIdentifier+extension.swift"; sourceTree = "<group>"; };
 		A18D22BC259AC01900EAF073 /* Real+extenstion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Real+extenstion.swift"; sourceTree = "<group>"; };
+		A18EB40E25A40A16000E5194 /* IconCases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconCases.swift; sourceTree = "<group>"; };
 		A19041C525919C570083CA59 /* EditUrlCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditUrlCell.xib; sourceTree = "<group>"; };
 		A19041C825919EDD0083CA59 /* EditUrlCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUrlCell.swift; sourceTree = "<group>"; };
 		A19041CD2591A6380083CA59 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
@@ -398,6 +400,7 @@
 			children = (
 				A19EC9BC257B2E9A002F4EAA /* DefaultStyle.swift */,
 				A17A7499259594C500F04C1D /* ReachabilityTest.swift */,
+				A18EB40E25A40A16000E5194 /* IconCases.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -649,6 +652,7 @@
 				A10569CA256E2F7E00F926B7 /* ItemTableViewCell.swift in Sources */,
 				A19BCA242584286000FCF31B /* FaviconLoader.swift in Sources */,
 				A190D576258D63F8001947F1 /* Colorable.swift in Sources */,
+				A18EB40F25A40A16000E5194 /* IconCases.swift in Sources */,
 				A16EB4A024B96BEC00E179E3 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
