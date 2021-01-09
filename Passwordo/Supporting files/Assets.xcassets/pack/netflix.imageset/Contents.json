@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "vk-1.svg",
+      "filename" : "netflix.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "vk-2.svg",
+      "filename" : "netflix-1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "vk-3.svg",
+      "filename" : "netflix-2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

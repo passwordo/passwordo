@@ -3,6 +3,7 @@ PODS:
   - EmptyDataSet-Swift (5.0.0)
   - FavIcon (3.1.0)
   - IQKeyboardManager (6.5.6)
+  - Punycode (1.0.1)
   - Realm (10.5.0):
     - Realm/Headers (= 10.5.0)
   - Realm/Headers (10.5.0)
@@ -11,6 +12,8 @@ PODS:
   - SwiftMessages (8.0.5):
     - SwiftMessages/App (= 8.0.5)
   - SwiftMessages/App (8.0.5)
+  - TLDExtract (1.0.1):
+    - Punycode (~> 1.0)
 
 DEPENDENCIES:
   - Cache
@@ -19,6 +22,7 @@ DEPENDENCIES:
   - IQKeyboardManager
   - RealmSwift
   - SwiftMessages
+  - TLDExtract
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -26,19 +30,23 @@ SPEC REPOS:
     - EmptyDataSet-Swift
     - FavIcon
     - IQKeyboardManager
+    - Punycode
     - Realm
     - RealmSwift
     - SwiftMessages
+    - TLDExtract
 
 SPEC CHECKSUMS:
   Cache: 4ca7e00363fca5455f26534e5607634c820ffc2d
   EmptyDataSet-Swift: eb382c0c87a2d9c678077385a595cec52da38171
   FavIcon: 21651b47d8f6b33517973859f85e2cb6f9fcfaee
   IQKeyboardManager: 2a6e97afdafc7becf0cb17a9a8d795e3a980717f
+  Punycode: ddbef4a269780c8f19a7e8deb01d9f101cb2ef86
   Realm: e1c22c3d83b229afb70ebc10e1771c91e9542d12
   RealmSwift: 6fc078d9d3fd7e58c71bfdbb694e252462f112a5
   SwiftMessages: 539fd54a766bf08ec667e90aa141c44b8b8aaa55
+  TLDExtract: 63aa739e9b50052ef04e792927c43db62b2bb6b5
 
-PODFILE CHECKSUM: a1003000c6ca52ac3fd838b4787c2d7cd620bb7f
+PODFILE CHECKSUM: 8a7bc8c5c8b4664626fe089f08e67ef4b019edba
 
 COCOAPODS: 1.10.0

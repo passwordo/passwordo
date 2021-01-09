@@ -9,13 +9,17 @@
 import Foundation
 
 
-enum WebSite: String {
+enum IconCases: String {
     case vk = "vk"
     case apple = "apple"
     case google = "google"
     case amazon = "amazon"
+    case dribbble = "dribbble"
+    case nasa = "nasa"
+    case netflix = "netflix"
+    case samsung = "samsung"
     
-    func printDirection() -> String {
+    func returnDirection() -> String {
         return self.rawValue
     }
 }

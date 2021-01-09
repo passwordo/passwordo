@@ -14,6 +14,7 @@ target 'Passwordo' do
   pod 'EmptyDataSet-Swift', '~> 5.0.0'
   pod 'SwiftMessages'
   pod 'IQKeyboardManager'
+  pod 'TLDExtract' 
 
 end
 

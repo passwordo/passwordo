@@ -158,6 +158,7 @@ class EditViewModelNamePicture: EditViewModelItem {
         self.image = image
         self.imageName = imageName
     }
+    
 }
 
 // MARK: - EditViewModelUrl

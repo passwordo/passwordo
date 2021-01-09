@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import FavIcon
 import Network
+import TLDExtract
 
 protocol Faviconable {
     
@@ -17,54 +18,73 @@ protocol Faviconable {
 
 extension Faviconable where Self: UIResponder {
     
-    func downloadFaviconForUrl(for url: String, with itemName: String, imageName: String, complition: @escaping () -> Void) {
+    func downloadFaviconForUrl(for url: String, with itemName: String, imageName: String, complition: @escaping () -> Void) -> UIImage {
         
-        print("name: \(itemName)")
-        print("name: \(url)")
-
-        var saveImg: UIImage?
-        
-        var id = itemName
-        let vowels: Set<Character> = ["/", "\\", ":", ";"]
-        id.removeAll(where: { vowels.contains($0)})
-        
-        if urlIsValid(urlString: url) && internetIsEnable() {
-            do {
-                try FavIcon.downloadPreferred(url, width: 256, height: 256) { [self] result in
-                    if case let .success(image) = result {
-                        
-                        saveImg = image
-                        
-                        FilesHandling.saveImage(image: saveImg!, withName: imageName)
-                        complition()
-                    } else if case .failure(_) = result {
-                        generateImageForItem(itemName: itemName, with: imageName)
-                        complition()
-                    }
-                    
-                }
-            } catch {
-                if !itemName.isEmpty {
-                    generateImageForItem(itemName: itemName, with: imageName)
-                } else {
-                    FilesHandling.saveImage(image: UIImage(named: "noimage")!, withName: imageName)
-                }
-                complition()
-            }
-        } else {
-            if !itemName.isEmpty {
-                generateImageForItem(itemName: itemName, with: imageName)
-            } else {
-                FilesHandling.saveImage(image: UIImage(named: "noimage")!, withName: imageName)
-            }
-            complition()
-        }
+//        var saveImg: UIImage?
+//
+//        let existingImage = setUpExsistingImage(for: url, name: itemName)
+//
+//        if existingImage != nil  {
+//            saveImg = existingImage
+////            FilesHandling.saveImage(image: saveImg!, withName: imageName)
+//            complition()
+//            return saveImg!
+//        } else {
+//
+//            var id = itemName
+//            let vowels: Set<Character> = ["/", "\\", ":", ";"]
+//            id.removeAll(where: { vowels.contains($0)})
+//
+//            if urlIsValid(urlString: url) && internetIsEnable() {
+//                do {
+//                    try FavIcon.downloadPreferred(url, width: 256, height: 256) { [self] result in
+//                        if case let .success(image) = result {
+//
+//                            saveImg = image
+//
+////                            FilesHandling.saveImage(image: saveImg!, withName: imageName)
+//                            complition()
+//                        } else if case .failure(_) = result {
+//                            saveImg = generateImageForItem(itemName: itemName, with: imageName)
+//                            complition()
+//                        }
+//                    }
+//                } catch {
+//                    if !itemName.isEmpty {
+//                        saveImg = generateImageForItem(itemName: itemName, with: imageName)
+//                    } else {
+////                        FilesHandling.saveImage(image: UIImage(named: "noimage")!, withName: imageName)
+//                    }
+//                    complition()
+//                    return saveImg!
+//                }
+//            } else {
+//                if !itemName.isEmpty {
+//                    saveImg = generateImageForItem(itemName: itemName, with: imageName)
+//                } else {
+////                    FilesHandling.saveImage(image: UIImage(named: "noimage")!, withName: imageName)
+//                    return UIImage(named: "noimage")!
+//                }
+//                complition()
+////                return saveImg!
+//            }
+//            return saveImg ?? UIImage(named: "noimage")!
+//        }
+        return UIImage()
     }
     
     
-    func generateImageForItem(itemName: String, with imageName: String) {
+    func generateImageForItem(itemName: String, with imageName: String) -> UIImage {
+        var saveImg: UIImage?
+        
         if itemName != "" {
-            var saveImg: UIImage?
+            let exicstingImage = setUpExsistingImage(for: nil, name: itemName)
+            
+            if exicstingImage != nil {
+//                FilesHandling.saveImage(image: exicstingImage!, withName: imageName)
+                return exicstingImage!
+            }
+            
             
             let scale = UIScreen.main.scale
             
@@ -82,8 +102,10 @@ extension Faviconable where Self: UIResponder {
             label.layer.render(in: context!)
             let image = UIGraphicsGetImageFromCurrentImageContext()!
             saveImg = UIImage(cgImage: image.cgImage!, scale: scale, orientation: .up)
-            FilesHandling.saveImage(image: saveImg!, withName: imageName)
+//            FilesHandling.saveImage(image: saveImg!, withName: imageName)
+            
         }
+        return saveImg ?? UIImage(named: "noimage")!
     }
     
     func urlIsValid (urlString: String?) -> Bool {
@@ -105,4 +127,30 @@ extension Faviconable where Self: UIResponder {
         }
     }
     
+    private func parseDomainName(url: String) -> String {
+        let extractor = try! TLDExtract(useFrozenData: true)
+        guard let result: TLDResult = extractor.parse(url) else { return "" }
+        return result.secondLevelDomain ?? ""
+    }
+    
+    private func setUpExsistingImage(for url: String?, name: String) -> UIImage? {
+        var returnImage: UIImage?
+        var icon: String?
+        
+        
+
+        if url != nil && internetIsEnable() {
+            let name = parseDomainName(url: url!)
+            icon = IconCases(rawValue: name)?.returnDirection()
+        } else {
+            icon = IconCases(rawValue: name.lowercased())?.returnDirection()
+        }
+
+
+        if icon != nil {
+            returnImage = UIImage(named: icon!)
+            return returnImage
+        }
+        return nil
+    }
 }

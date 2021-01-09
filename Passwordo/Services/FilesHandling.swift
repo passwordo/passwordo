@@ -16,7 +16,7 @@ class FilesHandling {
         .appendingPathComponent("Library/Caches/")
     
     class func saveImage(image: UIImage, withName: String) {
-        guard let data = image.jpegData(compressionQuality: 1) ?? image.pngData() else {
+        guard let data = image.pngData() else {
             return
         }
         do {

@@ -19,7 +19,7 @@ class EditVC: UIViewController, Randomable {
     let db = DatabaseManager()
     let applyColor = DefaultStyle()
     
-    private var generatedImageName: String?
+    var generatedImageName: String?
     var editMode = true
     
     private var newName: String!
@@ -45,9 +45,25 @@ class EditVC: UIViewController, Randomable {
         setupCells()
         setupView()
         setupObservers()
+        deleteButton()
         
         observeForm()
     }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        print("viewDidDisappear VC")
+        item = nil
+        generatedImageName = nil
+        
+        NotificationCenter.default.removeObserver(self)
+        
+//        NotificationCenter.default.removeObserver(self, name: .didSaveButtonPress, object: nil)
+//        NotificationCenter.default.removeObserver(self, name: .didUpdateLogin, object: nil)
+//        NotificationCenter.default.removeObserver(self, name: .didUpdateName, object: nil)
+//        NotificationCenter.default.removeObserver(self, name: .didUpdateUrl, object: nil)
+//        NotificationCenter.default.removeObserver(self, name: .didUpdatePassword, object: nil)
+//        NotificationCenter.default.removeObserver(self, name: .didPasswordGenerationButtonTapped, object: nil)
+        }
     
     // MARK: - setupLaunch()
     
@@ -200,6 +216,7 @@ class EditVC: UIViewController, Randomable {
     }
     
     @objc func cancel() {
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "didCancelButtonPress"), object: nil)
         navigationController?.popViewController(animated: false)
     }
     
@@ -210,7 +227,57 @@ class EditVC: UIViewController, Randomable {
             let newPass = MPassword(itemName: newName!, userName: newLogin, password: newPassword, serviceURL: newUrl!, imageURL: generatedImageName!)
             DatabaseManager.saveToDataBase(item: newPass)
         }
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "didSaveButtonPress"), object: nil)
         navigationController?.popViewController(animated: false)
+        item = nil
+        generatedImageName = nil
+    }
+    
+    // MARK: - deinit
+    
+    deinit {
+        print("Deinit VC")
+        
+        NotificationCenter.default.removeObserver(self, name: .didSaveButtonPress, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .didUpdateName, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .didUpdateUrl, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .didUpdatePassword, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .didPasswordGenerationButtonTapped, object: nil)
+    }
+    
+    
+    private func deleteButton() {
+        if editMode {
+            
+            let deleteButton: UIButton = {
+                let button = UIButton()
+                button.setTitle("Delete", for: .normal)
+                button.backgroundColor = .red
+                button.frame = CGRect(x: 100, y: 100, width: 100, height: 100)
+                return button
+            }()
+            
+            let deleteView = UIView()
+            deleteView.backgroundColor = applyColor.Style.setColor(mainColor: UIColor.AppColors.cellBackgroundColor, darkModeCorlor: UIColor.AppColors.cellBackgroundColorDarkMode)
+            
+            deleteView.translatesAutoresizingMaskIntoConstraints = false
+            deleteButton.translatesAutoresizingMaskIntoConstraints = false
+            view.addSubview(deleteView)
+            view.addSubview(deleteButton)
+            
+            
+            NSLayoutConstraint.activate([
+                deleteView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                deleteView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                deleteView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+                deleteView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.size.height / 10),
+            ])
+            
+            deleteButton.centerYAnchor.constraint(equalTo: deleteView.centerYAnchor).isActive = true
+            deleteButton.centerXAnchor.constraint(equalTo: deleteView.centerXAnchor).isActive = true
+            
+            
+        }
     }
 }
 

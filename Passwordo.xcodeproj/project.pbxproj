@@ -48,6 +48,8 @@
 		A18D22BA259AA69D00EAF073 /* CredentialProviderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1713BC82599C34500D73469 /* CredentialProviderViewController.swift */; };
 		A18D22BD259AC01900EAF073 /* Real+extenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18D22BC259AC01900EAF073 /* Real+extenstion.swift */; };
 		A18EB40F25A40A16000E5194 /* IconCases.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18EB40E25A40A16000E5194 /* IconCases.swift */; };
+		A18F437725A811E10031674F /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18F437625A811E10031674F /* Button.swift */; };
+		A18F6E7125A6C6A2000ACFAF /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18F6E7025A6C6A2000ACFAF /* Parser.swift */; };
 		A19041C625919C570083CA59 /* EditUrlCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A19041C525919C570083CA59 /* EditUrlCell.xib */; };
 		A19041C925919EDD0083CA59 /* EditUrlCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19041C825919EDD0083CA59 /* EditUrlCell.swift */; };
 		A19041CE2591A6380083CA59 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19041CD2591A6380083CA59 /* UIView+Extension.swift */; };
@@ -149,6 +151,8 @@
 		A18D22A0259A82A100EAF073 /* ASCredentialServiceIdentifier+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ASCredentialServiceIdentifier+extension.swift"; sourceTree = "<group>"; };
 		A18D22BC259AC01900EAF073 /* Real+extenstion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Real+extenstion.swift"; sourceTree = "<group>"; };
 		A18EB40E25A40A16000E5194 /* IconCases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconCases.swift; sourceTree = "<group>"; };
+		A18F437625A811E10031674F /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
+		A18F6E7025A6C6A2000ACFAF /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 		A19041C525919C570083CA59 /* EditUrlCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditUrlCell.xib; sourceTree = "<group>"; };
 		A19041C825919EDD0083CA59 /* EditUrlCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUrlCell.swift; sourceTree = "<group>"; };
 		A19041CD2591A6380083CA59 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
@@ -338,6 +342,14 @@
 			path = EditTableViewCell;
 			sourceTree = "<group>";
 		};
+		A18F6E6F25A6C68D000ACFAF /* DELETE */ = {
+			isa = PBXGroup;
+			children = (
+				A18F6E7025A6C6A2000ACFAF /* Parser.swift */,
+			);
+			path = DELETE;
+			sourceTree = "<group>";
+		};
 		A190D599258DEBD9001947F1 /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -398,9 +410,11 @@
 		A19EC9BF257B2E9E002F4EAA /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				A18F6E6F25A6C68D000ACFAF /* DELETE */,
 				A19EC9BC257B2E9A002F4EAA /* DefaultStyle.swift */,
 				A17A7499259594C500F04C1D /* ReachabilityTest.swift */,
 				A18EB40E25A40A16000E5194 /* IconCases.swift */,
+				A18F437625A811E10031674F /* Button.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -450,6 +464,8 @@
 				A1713BD02599C34500D73469 /* PBXTargetDependency */,
 			);
 			name = Passwordo;
+			packageProductDependencies = (
+			);
 			productName = Passwordo;
 			productReference = A16EB49A24B96BEC00E179E3 /* Passwordo.app */;
 			productType = "com.apple.product-type.application";
@@ -500,6 +516,8 @@
 				ru,
 			);
 			mainGroup = A16EB49124B96BEC00E179E3;
+			packageReferences = (
+			);
 			productRefGroup = A16EB49B24B96BEC00E179E3 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -611,6 +629,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A19041CE2591A6380083CA59 /* UIView+Extension.swift in Sources */,
+				A18F437725A811E10031674F /* Button.swift in Sources */,
 				A1858C7D258970C90048EA19 /* MainCoordinator.swift in Sources */,
 				A19041DA2591CD090083CA59 /* EditPasswordCell.swift in Sources */,
 				A183AB15259042A8003F6564 /* EditNamePictureCell.swift in Sources */,
@@ -642,6 +661,7 @@
 				A1713B43259937AA00D73469 /* XIBLocalizable.swift in Sources */,
 				A17A748E25957EBE00F04C1D /* Randomable.swift in Sources */,
 				A1713B322599323300D73469 /* String+extension.swift in Sources */,
+				A18F6E7125A6C6A2000ACFAF /* Parser.swift in Sources */,
 				A169BC5624BB9E4D006D9BF9 /* MPassword.swift in Sources */,
 				A19E2487258C092E0083B2BA /* CheckoutViewModel.swift in Sources */,
 				A17A3D232597EB1B00B84175 /* UIViewController+storyboard.swift in Sources */,

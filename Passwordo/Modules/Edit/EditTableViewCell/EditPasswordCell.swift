@@ -13,6 +13,7 @@ import Combine
 class EditPasswordCell: UITableViewCell, Colorable {
     
     @IBOutlet weak var passworTextField: UITextField?
+    @IBOutlet weak var generateButton: Button!
     
     let applyColor = DefaultStyle()
     var password: String?
@@ -47,6 +48,8 @@ class EditPasswordCell: UITableViewCell, Colorable {
                         .store(in: &cancellables)
 
             backgroundColor = applyColor.Style.setColor(mainColor: UIColor.AppColors.cellBackgroundColor, darkModeCorlor: UIColor.AppColors.cellBackgroundColorDarkMode)
+            
+            
         }
     }
     

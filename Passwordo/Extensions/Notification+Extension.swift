@@ -15,4 +15,6 @@ extension Notification.Name {
     static let didUpdateName = Notification.Name("didUpdateName")
     static let didPasswordGenerationButtonTapped = Notification.Name("didPasswordGenerationButtonTapped")
     static let didPasswordGenerated = Notification.Name("didPasswordGenerated")
+    static let didSaveButtonPress = Notification.Name("didSaveButtonPress")
+    static let didCancelButtonPress = Notification.Name("didCancelButtonPress")
 }

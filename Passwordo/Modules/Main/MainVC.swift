@@ -29,7 +29,7 @@ class MainVC: UITableViewController, UISearchControllerDelegate, Emptyble {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         passwordItems = DatabaseManager.all()
         setupView()
         setupObservers()
@@ -39,6 +39,7 @@ class MainVC: UITableViewController, UISearchControllerDelegate, Emptyble {
     deinit {
         // Remove observer
         NotificationCenter.default.removeObserver(self, name: UIApplication.willEnterForegroundNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "searchData"), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
