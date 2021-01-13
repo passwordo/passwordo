@@ -52,10 +52,10 @@ class EditVC: UIViewController, Randomable {
     
     override func viewDidDisappear(_ animated: Bool) {
         print("viewDidDisappear VC")
-        item = nil
-        generatedImageName = nil
-        
-        NotificationCenter.default.removeObserver(self)
+//        item = nil
+//        generatedImageName = nil
+//        
+//        NotificationCenter.default.removeObserver(self)
         
 //        NotificationCenter.default.removeObserver(self, name: .didSaveButtonPress, object: nil)
 //        NotificationCenter.default.removeObserver(self, name: .didUpdateLogin, object: nil)

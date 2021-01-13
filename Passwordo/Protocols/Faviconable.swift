@@ -136,16 +136,13 @@ extension Faviconable where Self: UIResponder {
     private func setUpExsistingImage(for url: String?, name: String) -> UIImage? {
         var returnImage: UIImage?
         var icon: String?
-        
-        
 
         if url != nil && internetIsEnable() {
             let name = parseDomainName(url: url!)
-            icon = IconCases(rawValue: name)?.returnDirection()
+            icon = IconCases.RawValue(name).description
         } else {
-            icon = IconCases(rawValue: name.lowercased())?.returnDirection()
+            icon = IconCases.RawValue(name.lowercased()).description
         }
-
 
         if icon != nil {
             returnImage = UIImage(named: icon!)

@@ -46,13 +46,12 @@ public class DatabaseManager {
     }
     
     static func all() -> Results<MPassword> {
-        print(fileURL)
         let key = generateKeyIfNeeded()
         let config = Realm.Configuration(fileURL: fileURL, encryptionKey: key, deleteRealmIfMigrationNeeded: true)
         let realm = try! Realm(configuration: config)
         
 //        print(Realm.Configuration.defaultConfiguration.fileURL)
-//        print(fileURL)
+        print(fileURL)
         
         return realm.objects(MPassword.self).sorted(byKeyPath: "itemName", ascending: true)
     }

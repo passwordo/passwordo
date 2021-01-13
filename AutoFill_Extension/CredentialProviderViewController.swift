@@ -27,6 +27,7 @@ class CredentialProviderViewController: ASCredentialProviderViewController, UITa
 //        tableView.register(CredentialTableViewCell.self, forCellReuseIdentifier: "cell")
 
 //        navigationBar.topItem?.leftBarButtonItem = nil
+
         navigationBar.topItem?.rightBarButtonItem = nil
  
     }
@@ -39,14 +40,14 @@ class CredentialProviderViewController: ASCredentialProviderViewController, UITa
      prioritize the most relevant credentials in the list.
     */
     override func prepareCredentialList(for serviceIdentifiers: [ASCredentialServiceIdentifier]) {
-        navigationBar.topItem?.leftBarButtonItem = cancelButton
-        
-        if serviceIdentifiers.count == 1 {
-            passwordItems = DatabaseManager.all().filter("serviceURL like %@", serviceIdentifiers.first!.domainForFilter)
-        }
-        if passwordItems.first == nil {
+//        navigationBar.topItem?.leftBarButtonItem = cancelButton
+//
+//        if serviceIdentifiers.count == 1 {
+//            passwordItems = DatabaseManager.all().filter("serviceURL like %@", serviceIdentifiers.first!.domainForFilter)
+//        }
+//        if passwordItems.first == nil {
             passwordItems = DatabaseManager.all()
-        }
+//        }
         
         tableView.reloadData()
     }
@@ -79,14 +80,14 @@ class CredentialProviderViewController: ASCredentialProviderViewController, UITa
 //    }
     
 //
-//    override func provideCredentialWithoutUserInteraction(for credentialIdentity: ASPasswordCredentialIdentity) {
-//
-//        let id = credentialIdentity.recordIdentifier!
-//        let passwordItem = DatabaseManager.search(searchText: id)
-//
-//        let passwordCredential = ASPasswordCredential(user: passwordItem[0].userName, password: passwordItem[0].passwordString)
-//        extensionContext.completeRequest(withSelectedCredential: passwordCredential, completionHandler: nil)
-//    }
+    override func provideCredentialWithoutUserInteraction(for credentialIdentity: ASPasswordCredentialIdentity) {
+
+        let id = credentialIdentity.recordIdentifier!
+        let passwordItem = DatabaseManager.search(searchText: id)
+
+        let passwordCredential = ASPasswordCredential(user: passwordItem[0].userName, password: passwordItem[0].passwordString)
+        extensionContext.completeRequest(withSelectedCredential: passwordCredential, completionHandler: nil)
+    }
     
     
 
@@ -98,16 +99,16 @@ class CredentialProviderViewController: ASCredentialProviderViewController, UITa
      */
     
     
-//    override func prepareInterfaceToProvideCredential(for credentialIdentity: ASPasswordCredentialIdentity) {
-//        print("prepareInterfaceToProvideCredential start")
-//        if let id = credentialIdentity.recordIdentifier {
-//            passwordItems = DatabaseManager.all().filter("id = %@", id)
-//        } else {
-//            passwordItems = DatabaseManager.all().filter("serviceURL like %@", credentialIdentity.serviceIdentifier.domainForFilter)
-//        }
-//        tableView.reloadData()
-//
-//    }
+    override func prepareInterfaceToProvideCredential(for credentialIdentity: ASPasswordCredentialIdentity) {
+        print("prepareInterfaceToProvideCredential start")
+        if let id = credentialIdentity.recordIdentifier {
+            passwordItems = DatabaseManager.all().filter("id = %@", id)
+        } else {
+            passwordItems = DatabaseManager.all().filter("serviceURL like %@", credentialIdentity.serviceIdentifier.domainForFilter)
+        }
+        tableView.reloadData()
+
+    }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -115,15 +116,17 @@ class CredentialProviderViewController: ASCredentialProviderViewController, UITa
             return 0
         }
         return passwordItems.count
+//        return 5
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let passwordItem = passwordItems[indexPath.row]
         
-//        let image = Cache.getImageFromCache(named: passwordItem.imageURL)
+//        let image = FilesHandling.getImage(withName: passwordItem.imageURL)
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CredentialTableViewCell
         cell.setupCell(item: passwordItem)
+        
         
         return cell
     }

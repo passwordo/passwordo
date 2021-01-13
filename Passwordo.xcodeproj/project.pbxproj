@@ -132,7 +132,6 @@
 		A1713BC82599C34500D73469 /* CredentialProviderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialProviderViewController.swift; sourceTree = "<group>"; };
 		A1713BCB2599C34500D73469 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		A1713BCD2599C34500D73469 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A1713BCE2599C34500D73469 /* AutoFill_Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AutoFill_Extension.entitlements; sourceTree = "<group>"; };
 		A17A3D222597EB1B00B84175 /* UIViewController+storyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+storyboard.swift"; sourceTree = "<group>"; };
 		A17A3D2525981F4200B84175 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		A17A3D282598290D00B84175 /* PasswordGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordGenerator.swift; sourceTree = "<group>"; };
@@ -148,6 +147,7 @@
 		A1858C7C258970C90048EA19 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		A1858C80258978600048EA19 /* Storyboarded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboarded.swift; sourceTree = "<group>"; };
 		A1858CB92589D5150048EA19 /* Emptyble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emptyble.swift; sourceTree = "<group>"; };
+		A189A4D525AA4C0C00265B97 /* AutoFill_Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AutoFill_Extension.entitlements; sourceTree = "<group>"; };
 		A18D22A0259A82A100EAF073 /* ASCredentialServiceIdentifier+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ASCredentialServiceIdentifier+extension.swift"; sourceTree = "<group>"; };
 		A18D22BC259AC01900EAF073 /* Real+extenstion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Real+extenstion.swift"; sourceTree = "<group>"; };
 		A18EB40E25A40A16000E5194 /* IconCases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconCases.swift; sourceTree = "<group>"; };
@@ -304,10 +304,10 @@
 			children = (
 				A1713BCA2599C34500D73469 /* MainInterface.storyboard */,
 				A1713BC82599C34500D73469 /* CredentialProviderViewController.swift */,
-				A1713BCD2599C34500D73469 /* Info.plist */,
-				A1713BCE2599C34500D73469 /* AutoFill_Extension.entitlements */,
-				A18D22A0259A82A100EAF073 /* ASCredentialServiceIdentifier+extension.swift */,
 				A19FEC6C259BDF7A00470190 /* CredentialTableViewCell.swift */,
+				A18D22A0259A82A100EAF073 /* ASCredentialServiceIdentifier+extension.swift */,
+				A1713BCD2599C34500D73469 /* Info.plist */,
+				A189A4D525AA4C0C00265B97 /* AutoFill_Extension.entitlements */,
 			);
 			path = AutoFill_Extension;
 			sourceTree = "<group>";
