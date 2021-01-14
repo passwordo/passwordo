@@ -4,8 +4,8 @@ Available on the App Storee: https://apps.apple.com/ru/app/passwordo/id154656187
 
 <img src="https://github.com/passwordo/passwordo/blob/master/images/screen1.png" width="200">        <img src="https://github.com/passwordo/passwordo/blob/master/images/screen2.png" width="200">   <img src="https://github.com/passwordo/passwordo/blob/master/images/screen3.png" width="200">   
 
-- [x] Dark-mode
 - [x] Encryption
-- [x] Localisation (eng, ru)
 - [x] Password AutoFill
 - [ ] Face ID/Touch ID
+- [x] Localisation (eng, ru)
+- [x] Dark-mode
