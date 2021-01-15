@@ -19,7 +19,7 @@ extension Emptyble where Self: UITableViewController {
         tableView.emptyDataSetView { view in
             view.titleLabelString(NSAttributedString(string: "Nothing here"))
                 .detailLabelString(NSAttributedString(string: "press \"+\" to add new item"))
-                .image(UIImage(named: "empty-box"))
+                .image(UIImage(named: "no-results"))
                 .isTouchAllowed(false)
                 .verticalOffset(CGFloat(-(UIScreen.main.bounds.size.height / 4.8)))
                 .verticalSpace(CGFloat(14))

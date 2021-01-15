@@ -25,7 +25,7 @@ class EditVC: UIViewController, Randomable {
     private var newName: String!
     private var newUrl: String!
     private var newLogin: String!
-    private var newPassword = ""
+    private var newPassword: String?
     
     @Published var checker: [Bool] = [false, false, false]
         
@@ -49,21 +49,6 @@ class EditVC: UIViewController, Randomable {
         
         observeForm()
     }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        print("viewDidDisappear VC")
-//        item = nil
-//        generatedImageName = nil
-//        
-//        NotificationCenter.default.removeObserver(self)
-        
-//        NotificationCenter.default.removeObserver(self, name: .didSaveButtonPress, object: nil)
-//        NotificationCenter.default.removeObserver(self, name: .didUpdateLogin, object: nil)
-//        NotificationCenter.default.removeObserver(self, name: .didUpdateName, object: nil)
-//        NotificationCenter.default.removeObserver(self, name: .didUpdateUrl, object: nil)
-//        NotificationCenter.default.removeObserver(self, name: .didUpdatePassword, object: nil)
-//        NotificationCenter.default.removeObserver(self, name: .didPasswordGenerationButtonTapped, object: nil)
-        }
     
     // MARK: - setupLaunch()
     
@@ -171,9 +156,9 @@ class EditVC: UIViewController, Randomable {
         if newLogin != nil && newLogin != item?.userName {
             DatabaseManager.updateItem(id: item!.id, forKey: "userName", newValue: newLogin)
         }
-        if newPassword != item?.passwordString {
-            DatabaseManager.updateItem(id: item!.id, forKey: "passwordString", newValue: newPassword)
-        }
+        
+        guard let password = newPassword else { return }
+        DatabaseManager.updateItem(id: item!.id, forKey: "passwordString", newValue: password)
     }
     
     // MARK: - @objc funcs
@@ -224,7 +209,7 @@ class EditVC: UIViewController, Randomable {
         if editMode {
             updateItem()
         } else {
-            let newPass = MPassword(itemName: newName!, userName: newLogin, password: newPassword, serviceURL: newUrl!, imageURL: generatedImageName!)
+            let newPass = MPassword(itemName: newName!, userName: newLogin, password: newPassword ?? "", serviceURL: newUrl!, imageURL: generatedImageName!)
             DatabaseManager.saveToDataBase(item: newPass)
         }
         NotificationCenter.default.post(name: Notification.Name(rawValue: "didSaveButtonPress"), object: nil)
@@ -251,9 +236,10 @@ class EditVC: UIViewController, Randomable {
             
             let deleteButton: UIButton = {
                 let button = UIButton()
-                button.setTitle("Delete", for: .normal)
-                button.backgroundColor = .red
+                button.setTitle("Delete".localized(), for: .normal)
+                button.setTitleColor(.red, for: .normal)
                 button.frame = CGRect(x: 100, y: 100, width: 100, height: 100)
+                button.addTarget(self, action: #selector(deleteButtonPressed), for: .touchUpInside)
                 return button
             }()
             
@@ -265,12 +251,11 @@ class EditVC: UIViewController, Randomable {
             view.addSubview(deleteView)
             view.addSubview(deleteButton)
             
-            
             NSLayoutConstraint.activate([
                 deleteView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
                 deleteView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
                 deleteView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-                deleteView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.size.height / 10),
+                deleteView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.size.height / 13),
             ])
             
             deleteButton.centerYAnchor.constraint(equalTo: deleteView.centerYAnchor).isActive = true
@@ -278,6 +263,18 @@ class EditVC: UIViewController, Randomable {
             
             
         }
+    }
+    
+    @objc func deleteButtonPressed() {
+        let alert = UIAlertController(title: "Do you want delete credentials for \(item!.itemName)?", message: nil, preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { [unowned self] (_) in
+            DatabaseManager.deleteFromDataBase(item: self.item!)
+            self.navigationController?.popToRootViewController(animated: true)
+        }))
+        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+
+        self.present(alert, animated: true)
     }
 }
 

@@ -47,6 +47,7 @@
 		A18D22B9259A9D1200EAF073 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1713BCA2599C34500D73469 /* MainInterface.storyboard */; };
 		A18D22BA259AA69D00EAF073 /* CredentialProviderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1713BC82599C34500D73469 /* CredentialProviderViewController.swift */; };
 		A18D22BD259AC01900EAF073 /* Real+extenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18D22BC259AC01900EAF073 /* Real+extenstion.swift */; };
+		A18D9B8A25B11F7500891312 /* ValidUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18D9B8925B11F7500891312 /* ValidUrl.swift */; };
 		A18EB40F25A40A16000E5194 /* IconCases.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18EB40E25A40A16000E5194 /* IconCases.swift */; };
 		A18F437725A811E10031674F /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18F437625A811E10031674F /* Button.swift */; };
 		A18F6E7125A6C6A2000ACFAF /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18F6E7025A6C6A2000ACFAF /* Parser.swift */; };
@@ -150,6 +151,7 @@
 		A189A4D525AA4C0C00265B97 /* AutoFill_Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AutoFill_Extension.entitlements; sourceTree = "<group>"; };
 		A18D22A0259A82A100EAF073 /* ASCredentialServiceIdentifier+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ASCredentialServiceIdentifier+extension.swift"; sourceTree = "<group>"; };
 		A18D22BC259AC01900EAF073 /* Real+extenstion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Real+extenstion.swift"; sourceTree = "<group>"; };
+		A18D9B8925B11F7500891312 /* ValidUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidUrl.swift; sourceTree = "<group>"; };
 		A18EB40E25A40A16000E5194 /* IconCases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconCases.swift; sourceTree = "<group>"; };
 		A18F437625A811E10031674F /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		A18F6E7025A6C6A2000ACFAF /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
@@ -415,6 +417,7 @@
 				A17A7499259594C500F04C1D /* ReachabilityTest.swift */,
 				A18EB40E25A40A16000E5194 /* IconCases.swift */,
 				A18F437625A811E10031674F /* Button.swift */,
+				A18D9B8925B11F7500891312 /* ValidUrl.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -653,6 +656,7 @@
 				A19041D42591C8F60083CA59 /* EditLoginCell.swift in Sources */,
 				A197BE0E258F299E00CDD97E /* EditViewModel.swift in Sources */,
 				A19BCA2F25845D7F00FCF31B /* FilesHandling.swift in Sources */,
+				A18D9B8A25B11F7500891312 /* ValidUrl.swift in Sources */,
 				A16EB4B324B96CF100E179E3 /* MainVC.swift in Sources */,
 				A19E248D258C376D0083B2BA /* NamePictureCell.swift in Sources */,
 				A18D22BD259AC01900EAF073 /* Real+extenstion.swift in Sources */,
@@ -863,14 +867,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Passwordo/Supporting files/Passwordo.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = Z4B59577RF;
 				INFOPLIST_FILE = Passwordo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bgoncharov.Passwordo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -886,14 +890,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Passwordo/Supporting files/Passwordo.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = Z4B59577RF;
 				INFOPLIST_FILE = Passwordo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bgoncharov.Passwordo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -908,7 +912,7 @@
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CODE_SIGN_ENTITLEMENTS = AutoFill_Extension/AutoFill_Extension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = Z4B59577RF;
 				INFOPLIST_FILE = AutoFill_Extension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
@@ -917,6 +921,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.bgoncharov.Passwordo.AutoFill-Extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -932,7 +937,7 @@
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CODE_SIGN_ENTITLEMENTS = AutoFill_Extension/AutoFill_Extension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = Z4B59577RF;
 				INFOPLIST_FILE = AutoFill_Extension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
@@ -941,6 +946,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.bgoncharov.Passwordo.AutoFill-Extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

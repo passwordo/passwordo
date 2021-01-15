@@ -171,7 +171,6 @@ class MainVC: UITableViewController, UISearchControllerDelegate, Emptyble {
             let item = passwordItems.first(where: { $0.id == loginValue[indexPath.row] })
             
             if editingStyle == .delete {
-                FilesHandling.deleteImage(withName: "\(item!.imageURL).png")
                 DatabaseManager.deleteFromDataBase(item: item!)
                 reload()
             }

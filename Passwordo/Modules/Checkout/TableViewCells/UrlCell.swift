@@ -12,6 +12,7 @@ import UIKit
 class UrlCell: UITableViewCell, Colorable {
     
     @IBOutlet weak var urlLabel: UILabel?
+    @IBOutlet weak var linkButton: UIButton?
     
     let applyColor = DefaultStyle()
     
@@ -22,6 +23,9 @@ class UrlCell: UITableViewCell, Colorable {
             urlLabel?.attributedText = findHttpsRange(string: item.url)
             
             backgroundColor = applyColor.Style.setColor(mainColor: UIColor.AppColors.cellBackgroundColor, darkModeCorlor: UIColor.AppColors.cellBackgroundColorDarkMode)
+            
+            
+            linkButton?.isHidden = ValidUrl.urlIsValid(urlString: item.url) ? false : true
         }
     }
 
@@ -46,9 +50,7 @@ class UrlCell: UITableViewCell, Colorable {
     }
     
     override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
-        
-        
-        
+
         UIMenuController.shared.menuItems = [UIMenuItem(title: "Copy".localized(), action: #selector(UrlCell.copyUrl)), UIMenuItem(title: "Share".localized(), action: #selector(UrlCell.shareUrl)), UIMenuItem(title: "Open in Safari".localized(), action: #selector(UrlCell.openInSafari))]
         
         return action == #selector(UrlCell.copyUrl) || action == #selector(UrlCell.shareUrl) || action == #selector(UrlCell.openInSafari)

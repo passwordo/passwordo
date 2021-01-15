@@ -60,7 +60,7 @@ class EditNamePictureCell: UITableViewCell, Faviconable {
         
         nameTextField?.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         nameTextField?.isEnabled = true
-        nameTextField?.becomeFirstResponder()
+//        nameTextField?.becomeFirstResponder()
         backgroundColor = applyColor.Style.setColor(mainColor: UIColor.AppColors.cellBackgroundColor, darkModeCorlor: UIColor.AppColors.cellBackgroundColorDarkMode)
     }
     

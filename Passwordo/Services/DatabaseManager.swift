@@ -39,9 +39,10 @@ public class DatabaseManager {
         let config = Realm.Configuration(fileURL: fileURL, encryptionKey: key, deleteRealmIfMigrationNeeded: true)
         let realm = try! Realm(configuration: config)
         
+        FilesHandling.deleteImage(withName: "\(item.imageURL).png")
+        
         try! realm.write {
             realm.delete(item)
-            
         }
     }
     

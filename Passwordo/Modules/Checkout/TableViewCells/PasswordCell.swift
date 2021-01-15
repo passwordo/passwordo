@@ -8,16 +8,19 @@
 
 import Foundation
 import UIKit
+import Combine
 
 class PasswordCell: UITableViewCell, Colorable {
     
     @IBOutlet weak var passwordLabel: UILabel?
     @IBOutlet weak var passwordButton: UIButton?
     
-    var passwordHide = true
+    @Published var passwordHide = true
     var password: String?
     
     let applyColor = DefaultStyle()
+    
+    private var subscribers = Set<AnyCancellable>()
     
     var item: CheckoutViewModelItem? {
         didSet {
@@ -29,7 +32,20 @@ class PasswordCell: UITableViewCell, Colorable {
             passwordLabel?.font = UIFont.systemFont(ofSize: 25)
             
             backgroundColor = applyColor.Style.setColor(mainColor: UIColor.AppColors.cellBackgroundColor, darkModeCorlor: UIColor.AppColors.cellBackgroundColorDarkMode)
+            
+            passwordButtonImage()
         }
+    }
+    
+    private func passwordButtonImage() {
+        
+        $passwordHide.sink { [unowned self] (status) in
+            if status == true {
+                self.passwordButton?.setImage(UIImage(named: "show"), for: .normal)
+            } else {
+                self.passwordButton?.setImage(UIImage(named: "hide"), for: .normal)
+            }
+        }.store(in: &subscribers)
     }
     
     static var identifier: String {

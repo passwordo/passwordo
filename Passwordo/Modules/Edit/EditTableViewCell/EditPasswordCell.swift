@@ -31,8 +31,13 @@ class EditPasswordCell: UITableViewCell, Colorable {
                 passworTextField?.text = ""
             } else {
                 passworTextField?.text = item.password
+
             }
             password = item.password
+            
+//            passworTextField?.text = item.password != "" ? item.password : password
+            
+            passworTextField?.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
             
             let textFieldPublisher = NotificationCenter.default
                         .publisher(for: UITextField.textDidChangeNotification, object: passworTextField)
@@ -81,6 +86,10 @@ class EditPasswordCell: UITableViewCell, Colorable {
             
         }
         
+    }
+    
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        password = textField.text ?? ""
     }
     
     
