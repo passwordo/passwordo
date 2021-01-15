@@ -11,11 +11,7 @@ import Foundation
 
 enum IconCases: String {
     
-    case vk
     case vkontakte
-    case apple
-    case google
-    case amazon
     case dribbble
     case nasa
     case netflix
@@ -30,7 +26,9 @@ enum IconCases: String {
     case alibaba
     case aliexpress
     case aliradar
+    case amazon
     case apnews
+    case apple
     case asktel
     case au
     case auto
@@ -49,6 +47,7 @@ enum IconCases: String {
     case bolshoyvopros
     case booking
     case britannica
+    case businessgazeta
     case businessinsider
     case businesswire
     case bustle
@@ -58,9 +57,11 @@ enum IconCases: String {
     case cdc
     case championat
     case chicagotribune
+    case chitaigorod
     case chron
     case cian
     case citilink
+    case citydata
     case cnbc
     case cnet
     case cnn
@@ -81,11 +82,13 @@ enum IconCases: String {
     case dictionary
     case digitaltrends
     case dnb
+    case dnsshop
     case dp73
     case drive2
     case drom
     case dtf
     case dw
+    case ekatalog
     case e1
     case ebay
     case ek
@@ -116,6 +119,7 @@ enum IconCases: String {
     case goodhousekeeping
     case goodreads
     case goods
+    case google
     case gorodrabot
     case gramho
     case groupon
@@ -152,6 +156,7 @@ enum IconCases: String {
     case jstor
     case justdial
     case kartaslov
+    case kinoteatr
     case kinopoisk
     case kohls
     case kommersant
@@ -164,7 +169,7 @@ enum IconCases: String {
     case leroymerlin
     case lifehacker
     case linguee
-    case list
+    case listorg
     case litres
     case liveinternet
     case livejournal
@@ -178,6 +183,7 @@ enum IconCases: String {
     case mayoclinic
     case medium
     case meduza
+    case merriamwebster
     case microsoft
     case mk
     case mos
@@ -185,6 +191,7 @@ enum IconCases: String {
     case msn
     case msu
     case mvideo
+    case myshop
     case narod
     case nature
     case nbcnews
@@ -203,6 +210,7 @@ enum IconCases: String {
     case onlinetrade
     case otzovik
     case oup
+    case overblog
     case overstock
     case ozon
     case patch
@@ -245,9 +253,11 @@ enum IconCases: String {
     case semanticscholar
     case sfgate
     case shopee
+    case simaland
     case simplyhired
     case slideshare
     case soundcloud
+    case sparkinterfax
     case sports
     case spotify
     case spr
@@ -261,7 +271,9 @@ enum IconCases: String {
     case tandfonline
     case tass
     case techradar
+    case tekstypesenok
     case telegraph
+    case thevillage
     case thefreedictionary
     case theguardian
     case thesun
@@ -274,7 +286,9 @@ enum IconCases: String {
     case tourister
     case travelask
     case tripadvisor
+
     case trud
+    case tsparfum
     case tumblr
     case tut
     case tutu
@@ -287,6 +301,7 @@ enum IconCases: String {
     case vedomosti
     case vesti
     case vimeo
+    case vk
     case vl
     case vokrug
     case walmart
@@ -325,11 +340,7 @@ enum IconCases: String {
     
     var value: String{
         switch self {
-        case .vk: return "vk"
         case .vkontakte: return "vk"
-        case .apple: return "apple"
-        case .google: return "google"
-        case .amazon: return "amazon"
         case .dribbble: return "dribbble"
         case .nasa: return "nasa"
         case .netflix: return "netflix"
@@ -344,7 +355,9 @@ enum IconCases: String {
         case .alibaba: return "alibaba"
         case .aliexpress: return "aliexpress"
         case .aliradar: return "aliradar"
+        case .amazon: return "amazon"
         case .apnews: return "apnews"
+        case .apple: return "apple"
         case .asktel: return "asktel"
         case .au: return "au"
         case .auto: return "auto"
@@ -363,6 +376,7 @@ enum IconCases: String {
         case .bolshoyvopros: return "bolshoyvopros"
         case .booking: return "booking"
         case .britannica: return "britannica"
+        case .businessgazeta: return "business-gazeta"
         case .businessinsider: return "businessinsider"
         case .businesswire: return "businesswire"
         case .bustle: return "bustle"
@@ -372,9 +386,11 @@ enum IconCases: String {
         case .cdc: return "cdc"
         case .championat: return "championat"
         case .chicagotribune: return "chicagotribune"
+        case .chitaigorod: return "chitai-gorod"
         case .chron: return "chron"
         case .cian: return "cian"
         case .citilink: return "citilink"
+        case .citydata: return "city-data"
         case .cnbc: return "cnbc"
         case .cnet: return "cnet"
         case .cnn: return "cnn"
@@ -395,11 +411,13 @@ enum IconCases: String {
         case .dictionary: return "dictionary"
         case .digitaltrends: return "digitaltrends"
         case .dnb: return "dnb"
+        case .dnsshop: return "dns-shop"
         case .dp73: return "dp73"
         case .drive2: return "drive2"
         case .drom: return "drom"
         case .dtf: return "dtf"
         case .dw: return "dw"
+        case .ekatalog: return "e-katalog"
         case .e1: return "e1"
         case .ebay: return "ebay"
         case .ek: return "ek"
@@ -430,6 +448,7 @@ enum IconCases: String {
         case .goodhousekeeping: return "goodhousekeeping"
         case .goodreads: return "goodreads"
         case .goods: return "goods"
+        case .google: return "google"
         case .gorodrabot: return "gorodrabot"
         case .gramho: return "gramho"
         case .groupon: return "groupon"
@@ -466,6 +485,7 @@ enum IconCases: String {
         case .jstor: return "jstor"
         case .justdial: return "justdial"
         case .kartaslov: return "kartaslov"
+        case .kinoteatr: return "kino-teatr"
         case .kinopoisk: return "kinopoisk"
         case .kohls: return "kohls"
         case .kommersant: return "kommersant"
@@ -478,7 +498,7 @@ enum IconCases: String {
         case .leroymerlin: return "leroymerlin"
         case .lifehacker: return "lifehacker"
         case .linguee: return "linguee"
-        case .list: return "list-org"
+        case .listorg: return "list-org"
         case .litres: return "litres"
         case .liveinternet: return "liveinternet"
         case .livejournal: return "livejournal"
@@ -492,6 +512,7 @@ enum IconCases: String {
         case .mayoclinic: return "mayoclinic"
         case .medium: return "medium"
         case .meduza: return "meduza"
+        case .merriamwebster: return "merriam-webster"
         case .microsoft: return "microsoft"
         case .mk: return "mk"
         case .mos: return "mos"
@@ -499,6 +520,7 @@ enum IconCases: String {
         case .msn: return "msn"
         case .msu: return "msu"
         case .mvideo: return "mvideo"
+        case .myshop: return "my-shop"
         case .narod: return "narod"
         case .nature: return "nature"
         case .nbcnews: return "nbcnews"
@@ -517,6 +539,7 @@ enum IconCases: String {
         case .onlinetrade: return "onlinetrade"
         case .otzovik: return "otzovik"
         case .oup: return "oup"
+        case .overblog: return "over-blog"
         case .overstock: return "overstock"
         case .ozon: return "ozon"
         case .patch: return "patch"
@@ -559,9 +582,11 @@ enum IconCases: String {
         case .semanticscholar: return "semanticscholar"
         case .sfgate: return "sfgate"
         case .shopee: return "shopee"
+        case .simaland: return "sima-land"
         case .simplyhired: return "simplyhired"
         case .slideshare: return "slideshare"
         case .soundcloud: return "soundcloud"
+        case .sparkinterfax: return "spark-interfax"
         case .sports: return "sports"
         case .spotify: return "spotify"
         case .spr: return "spr"
@@ -575,7 +600,9 @@ enum IconCases: String {
         case .tandfonline: return "tandfonline"
         case .tass: return "tass"
         case .techradar: return "techradar"
+        case .tekstypesenok: return "teksty-pesenok"
         case .telegraph: return "telegraph"
+        case .thevillage: return "the-village"
         case .thefreedictionary: return "thefreedictionary"
         case .theguardian: return "theguardian"
         case .thesun: return "thesun"
@@ -589,6 +616,7 @@ enum IconCases: String {
         case .travelask: return "travelask"
         case .tripadvisor: return "tripadvisor"
         case .trud: return "trud"
+        case .tsparfum: return "ts-parfum"
         case .tumblr: return "tumblr"
         case .tut: return "tut"
         case .tutu: return "tutu"
@@ -601,6 +629,7 @@ enum IconCases: String {
         case .vedomosti: return "vedomosti"
         case .vesti: return "vesti"
         case .vimeo: return "vimeo"
+        case .vk: return "vk"
         case .vl: return "vl"
         case .vokrug: return "vokrug"
         case .walmart: return "walmart"

@@ -136,12 +136,18 @@ extension Faviconable where Self: UIResponder {
     private func setUpExsistingImage(for url: String?, name: String) -> UIImage? {
         var returnImage: UIImage?
         var icon: String?
+        
+        let newName = name.components(separatedBy: ".")[0]
+        
+        let pattern = "[^A-Za-z0-9]+"
+        var result = newName.replacingOccurrences(of: pattern, with: "", options: [.regularExpression]).lowercased()
 
         if url != nil && internetIsEnable() {
             let name = parseDomainName(url: url!)
-            icon = IconCases.RawValue(name).description
+            icon = IconCases.init(rawValue: result).map { $0.value }
         } else {
-            icon = IconCases.RawValue(name.lowercased()).description
+            
+            icon = IconCases.init(rawValue: result).map { $0.value }
         }
 
         if icon != nil {

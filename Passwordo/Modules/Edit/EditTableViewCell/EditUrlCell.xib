@@ -4,61 +4,32 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
-        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="161" id="qiG-CK-Ca0" customClass="EditUrlCell" customModule="Passwordo" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="454" height="161"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="qiG-CK-Ca0" customClass="EditUrlCell" customModule="Passwordo" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="455" height="64"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qiG-CK-Ca0" id="GLY-aB-7iC">
-                <rect key="frame" x="0.0" y="0.0" width="454" height="161"/>
+                <rect key="frame" x="0.0" y="0.0" width="455" height="64"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="D88-9j-4xB">
-                        <rect key="frame" x="24" y="8" width="259" height="121.5"/>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="D88-9j-4xB">
+                        <rect key="frame" x="24" y="8" width="407" height="49"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="KTd-u4-eDn">
-                                <rect key="frame" x="0.0" y="0.0" width="259" height="93"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Website" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="OEh-7g-fsm">
-                                        <rect key="frame" x="0.0" y="36" width="85.5" height="21"/>
-                                        <fontDescription key="fontDescription" name="KohinoorBangla-Light" family="Kohinoor Bangla" pointSize="15"/>
-                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="Website"/>
-                                        </userDefinedRuntimeAttributes>
-                                    </label>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AwF-3M-1b4">
-                                        <rect key="frame" x="93.5" y="16" width="85.5" height="61"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                    </view>
-                                    <button opaque="NO" clipsSubviews="YES" contentMode="redraw" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="Ou3-j2-CSj" customClass="Button" customModule="Passwordo" customModuleProvider="target">
-                                        <rect key="frame" x="187" y="32" width="72" height="29"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                        <state key="normal" title="Download icon"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="Download icon"/>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                <color key="value" systemColor="linkColor"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                <real key="value" value="1"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="5"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </button>
-                                </subviews>
-                            </stackView>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0m8-zw-9Hb">
-                                <rect key="frame" x="0.0" y="97" width="259" height="24.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Website" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="OEh-7g-fsm">
+                                <rect key="frame" x="0.0" y="0.0" width="55" height="24.5"/>
+                                <fontDescription key="fontDescription" name="KohinoorBangla-Light" family="Kohinoor Bangla" pointSize="15"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="Website"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0m8-zw-9Hb">
+                                <rect key="frame" x="0.0" y="24.5" width="383" height="24.5"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="h8A-Ob-4F5"/>
                                 </constraints>
@@ -66,33 +37,22 @@
                                 <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                             </textField>
                         </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="0m8-zw-9Hb" secondAttribute="trailing" constant="24" id="wSW-As-loY"/>
+                        </constraints>
                     </stackView>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="D88-9j-4xB" secondAttribute="bottom" constant="8" id="4pg-wE-EeK"/>
-                    <constraint firstAttribute="trailing" secondItem="D88-9j-4xB" secondAttribute="trailing" constant="24" id="BSl-5X-7NF"/>
-                    <constraint firstItem="D88-9j-4xB" firstAttribute="leading" secondItem="GLY-aB-7iC" secondAttribute="leading" constant="24" id="Gka-Qv-W2j"/>
-                    <constraint firstItem="D88-9j-4xB" firstAttribute="top" secondItem="GLY-aB-7iC" secondAttribute="top" constant="8" id="H6Q-c9-ora"/>
+                    <constraint firstItem="D88-9j-4xB" firstAttribute="top" secondItem="GLY-aB-7iC" secondAttribute="top" constant="8" id="2Rv-pp-8yT"/>
+                    <constraint firstAttribute="trailing" secondItem="D88-9j-4xB" secondAttribute="trailing" constant="24" id="XKY-AL-o0F"/>
+                    <constraint firstAttribute="bottom" secondItem="D88-9j-4xB" secondAttribute="bottom" constant="8" id="e0a-8q-gDV"/>
+                    <constraint firstItem="D88-9j-4xB" firstAttribute="leading" secondItem="GLY-aB-7iC" secondAttribute="leading" constant="24" id="l87-ZC-SPb"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="downloadButton" destination="Ou3-j2-CSj" id="zT5-Ux-U26"/>
                 <outlet property="urlTextField" destination="0m8-zw-9Hb" id="Rtz-AY-6fv"/>
             </connections>
-            <point key="canvasLocation" x="160.86956521739131" y="76.674107142857139"/>
+            <point key="canvasLocation" x="22.463768115942031" y="21.428571428571427"/>
         </tableViewCell>
     </objects>
-    <designables>
-        <designable name="Ou3-j2-CSj">
-            <size key="intrinsicContentSize" width="84" height="27"/>
-        </designable>
-    </designables>
-    <resources>
-        <systemColor name="linkColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-    </resources>
 </document>

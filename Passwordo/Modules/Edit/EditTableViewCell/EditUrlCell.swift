@@ -13,7 +13,6 @@ import Combine
 class EditUrlCell: UITableViewCell {
     
     @IBOutlet weak var urlTextField: UITextField?
-    @IBOutlet weak var downloadButton: Button!
     
     let applyColor = DefaultStyle()
     var cancellables = Set<AnyCancellable>()
@@ -47,9 +46,6 @@ class EditUrlCell: UITableViewCell {
             
             
             backgroundColor = applyColor.Style.setColor(mainColor: UIColor.AppColors.cellBackgroundColor, darkModeCorlor: UIColor.AppColors.cellBackgroundColorDarkMode)
-            
-            downloadButton.isHidden = true
-
         }
     }
     

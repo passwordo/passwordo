@@ -38,13 +38,10 @@ class PasswordCell: UITableViewCell, Colorable {
     }
     
     private func passwordButtonImage() {
-        
+        var image: UIImage?
         $passwordHide.sink { [unowned self] (status) in
-            if status == true {
-                self.passwordButton?.setImage(UIImage(named: "show"), for: .normal)
-            } else {
-                self.passwordButton?.setImage(UIImage(named: "hide"), for: .normal)
-            }
+            image = status ? UIImage(named: "show") : UIImage(named: "hide")
+            self.passwordButton?.setImage(image?.withTintColor(.blue, renderingMode: .alwaysTemplate) , for: .normal)
         }.store(in: &subscribers)
     }
     
@@ -79,7 +76,7 @@ class PasswordCell: UITableViewCell, Colorable {
                         passwordLabel?.attributedText = range
                         
             passwordLabel?.attributedText = range
-            passwordLabel?.font = UIFont.systemFont(ofSize: 20)
+            passwordLabel?.font = UIFont.systemFont(ofSize: 18)
             
         } else {
             passwordHide = true
@@ -127,7 +124,7 @@ class PasswordCell: UITableViewCell, Colorable {
                         passwordLabel?.attributedText = range
                         
             passwordLabel?.attributedText = range
-            passwordLabel?.font = UIFont.systemFont(ofSize: 20)
+            passwordLabel?.font = UIFont.systemFont(ofSize: 18)
             
         } else {
             passwordHide = true

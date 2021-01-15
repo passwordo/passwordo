@@ -11,8 +11,10 @@ import UIKit
 
 class UrlCell: UITableViewCell, Colorable {
     
-    @IBOutlet weak var urlLabel: UILabel?
+//    @IBOutlet weak var urlLabel: UILabel?
     @IBOutlet weak var linkButton: UIButton?
+    
+    @IBOutlet weak var urlTextField: UITextField?
     
     let applyColor = DefaultStyle()
     
@@ -20,11 +22,18 @@ class UrlCell: UITableViewCell, Colorable {
         didSet {
             guard let item = item as? CheckoutViewModelUrl else { return }
             
-            urlLabel?.attributedText = findHttpsRange(string: item.url)
+            urlTextField?.text = item.url
+            
+            urlTextField?.isEnabled = false
+            
+            
+            
+            urlTextField?.attributedText = findHttpsRange(string: item.url)
             
             backgroundColor = applyColor.Style.setColor(mainColor: UIColor.AppColors.cellBackgroundColor, darkModeCorlor: UIColor.AppColors.cellBackgroundColorDarkMode)
             
-            
+            let image = UIImage(named: "link")
+            linkButton?.setImage(image?.withTintColor(.blue, renderingMode: .alwaysTemplate), for: .normal)
             linkButton?.isHidden = ValidUrl.urlIsValid(urlString: item.url) ? false : true
         }
     }
@@ -46,7 +55,7 @@ class UrlCell: UITableViewCell, Colorable {
     override func prepareForReuse() {
         super.prepareForReuse()
         
-        urlLabel?.text = ""
+        urlTextField?.text = ""
     }
     
     override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
@@ -59,11 +68,11 @@ class UrlCell: UITableViewCell, Colorable {
     
     @objc func copyUrl() {
         let pasteboard = UIPasteboard.general
-        pasteboard.string = urlLabel?.text
+        pasteboard.string = urlTextField?.text
       }
     
     @objc func shareUrl() {
-        let sharingContent = [urlLabel?.text]
+        let sharingContent = [urlTextField?.text]
         let ac = UIActivityViewController(activityItems: sharingContent as [Any], applicationActivities: nil)
         let keyWindow = UIApplication.shared.connectedScenes
                 .filter({$0.activationState == .foregroundActive})
@@ -75,13 +84,13 @@ class UrlCell: UITableViewCell, Colorable {
       }
     
     @objc func openInSafari() {
-        guard let link = URL(string: (urlLabel?.text)!) else { return }
+        guard let link = URL(string: (urlTextField?.text)!) else { return }
         UIApplication.shared.open(link)
       }
     
 
     @IBAction func urlButtonPressed(_ sender: Any) {
-        guard let link = URL(string: (urlLabel?.text)!) else { return }
+        guard let link = URL(string: (urlTextField?.text)!) else { return }
         UIApplication.shared.open(link)
     }
     

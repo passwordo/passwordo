@@ -51,6 +51,10 @@ class EditNamePictureCell: UITableViewCell, Faviconable {
             NotificationCenter.default.addObserver(self, selector: #selector(handleSaveButtonPressed), name: .didSaveButtonPress, object: nil)
             
             NotificationCenter.default.addObserver(self, selector: #selector(handleCancelButtonPressed), name: .didCancelButtonPress, object: nil)
+            
+            if nameTextField?.text?.isEmpty == true {
+                nameTextField?.becomeFirstResponder()
+            }
         }
     }
     
