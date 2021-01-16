@@ -229,6 +229,7 @@
 				A190D599258DEBD9001947F1 /* Main */,
 				A19E2480258C08750083B2BA /* Checkout */,
 				A197BE06258F27D800CDD97E /* Edit */,
+				A18A9C7825B2A4F0002BEC67 /* Settings */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -342,6 +343,13 @@
 				A19041D92591CD090083CA59 /* EditPasswordCell.swift */,
 			);
 			path = EditTableViewCell;
+			sourceTree = "<group>";
+		};
+		A18A9C7825B2A4F0002BEC67 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		A18F6E6F25A6C68D000ACFAF /* DELETE */ = {

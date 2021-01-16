@@ -29,9 +29,6 @@ class MainVC: UITableViewController, UISearchControllerDelegate, Emptyble {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        let parser = Parser()
-//        parser.parseIcons()
 
         passwordItems = DatabaseManager.all()
         setupView()
