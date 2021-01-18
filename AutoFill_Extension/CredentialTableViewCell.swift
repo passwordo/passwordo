@@ -19,7 +19,7 @@ class CredentialTableViewCell: UITableViewCell {
     
     func setupCell(item: MPassword) {
         itemFerstLabel?.text = item.itemName
-        itemSecondLabel?.text = item.userName
+        itemSecondLabel?.text = "\(item.serviceURL) - \(item.userName)"
         itemImage?.layer.cornerRadius = 6
         itemImage?.layer.masksToBounds = true
 

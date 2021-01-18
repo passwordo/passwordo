@@ -209,6 +209,15 @@ class MainVC: UITableViewController, UISearchControllerDelegate, Emptyble {
         newItemVC.enableEditMode()
         navigationController?.pushViewController(newItemVC, animated: true)
     }
+    
+    @IBAction func settingsButtonPressed(_ sender: Any) {
+        let settingsVC = SettingsVC()
+        let settingsVCNavi = UINavigationController(rootViewController: settingsVC)
+        settingsVCNavi.modalPresentationStyle = .fullScreen
+//        present(settingsVC, animated: true, completion: nil)
+        self.present(settingsVCNavi, animated: true, completion: nil)
+    }
+    
 }
 
 // MARK: - UISearchBarDelegate

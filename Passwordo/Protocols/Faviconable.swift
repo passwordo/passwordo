@@ -140,7 +140,7 @@ extension Faviconable where Self: UIResponder {
         let newName = name.components(separatedBy: ".")[0]
         
         let pattern = "[^A-Za-z0-9]+"
-        var result = newName.replacingOccurrences(of: pattern, with: "", options: [.regularExpression]).lowercased()
+        let result = newName.replacingOccurrences(of: pattern, with: "", options: [.regularExpression]).lowercased()
 
         if url != nil && internetIsEnable() {
             let name = parseDomainName(url: url!)
