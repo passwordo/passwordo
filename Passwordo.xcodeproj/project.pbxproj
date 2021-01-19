@@ -69,6 +69,8 @@
 		A190D576258D63F8001947F1 /* Colorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A190D575258D63F8001947F1 /* Colorable.swift */; };
 		A197BE0A258F281500CDD97E /* EditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A197BE09258F281500CDD97E /* EditVC.swift */; };
 		A197BE0E258F299E00CDD97E /* EditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A197BE0D258F299E00CDD97E /* EditViewModel.swift */; };
+		A19A056125B6926A00AABDB6 /* DefaultStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19EC9BC257B2E9A002F4EAA /* DefaultStyle.swift */; };
+		A19A056425B692AD00AABDB6 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ABE04E2588215500FAEB55 /* UIColor+Extension.swift */; };
 		A19B3B37257D841B00C042FA /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19B3B36257D841B00C042FA /* DatabaseManager.swift */; };
 		A19BCA1A2584194100FCF31B /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19BCA192584194100FCF31B /* KeychainService.swift */; };
 		A19BCA242584286000FCF31B /* FaviconLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19BCA232584286000FCF31B /* FaviconLoader.swift */; };
@@ -701,6 +703,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A19A056425B692AD00AABDB6 /* UIColor+Extension.swift in Sources */,
+				A19A056125B6926A00AABDB6 /* DefaultStyle.swift in Sources */,
 				A18D22BA259AA69D00EAF073 /* CredentialProviderViewController.swift in Sources */,
 				A1713C0C2599D1C100D73469 /* KeychainService.swift in Sources */,
 				A18D22A1259A82A100EAF073 /* ASCredentialServiceIdentifier+extension.swift in Sources */,

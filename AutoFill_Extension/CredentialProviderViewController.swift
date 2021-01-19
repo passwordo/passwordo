@@ -7,13 +7,17 @@
 //
 
 import AuthenticationServices
+import UIKit
 import RealmSwift
 
 class CredentialProviderViewController: ASCredentialProviderViewController, UITableViewDataSource, UITableViewDelegate {
     
+    let appleColor = DefaultStyle()
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
+    @IBOutlet weak var doneButton: UIBarButtonItem!
     
 //    @IBOutlet weak var itemImageView: UIImageView!
 //    @IBOutlet weak var itemTextLabel: UILabel!
@@ -28,7 +32,9 @@ class CredentialProviderViewController: ASCredentialProviderViewController, UITa
 
 //        navigationBar.topItem?.leftBarButtonItem = nil
 
-        navigationBar.topItem?.rightBarButtonItem = nil
+//        navigationBar.topItem?.rightBarButtonItem = nil
+        navigationBar.backgroundColor = appleColor.Style.setColor(mainColor: UIColor.AppColors.mainBackground, darkModeCorlor: UIColor.AppColors.mainBackgroundDarkMode)
+        tableView.backgroundColor = appleColor.Style.setColor(mainColor: UIColor.AppColors.mainBackground, darkModeCorlor: UIColor.AppColors.mainBackgroundDarkMode)
  
     }
     
@@ -40,14 +46,14 @@ class CredentialProviderViewController: ASCredentialProviderViewController, UITa
      prioritize the most relevant credentials in the list.
     */
     override func prepareCredentialList(for serviceIdentifiers: [ASCredentialServiceIdentifier]) {
-//        navigationBar.topItem?.leftBarButtonItem = cancelButton
-//
-//        if serviceIdentifiers.count == 1 {
-//            passwordItems = DatabaseManager.all().filter("serviceURL like %@", serviceIdentifiers.first!.domainForFilter)
-//        }
-//        if passwordItems.first == nil {
+        navigationBar.topItem?.rightBarButtonItem = nil
+
+        if serviceIdentifiers.count == 1 {
+            passwordItems = DatabaseManager.all().filter("serviceURL like %@", serviceIdentifiers.first!.domainForFilter)
+        }
+        if passwordItems.first == nil {
             passwordItems = DatabaseManager.all()
-//        }
+        }
         
         tableView.reloadData()
     }
@@ -72,7 +78,7 @@ class CredentialProviderViewController: ASCredentialProviderViewController, UITa
 //    }
 //
     
-
+//
 //    override func provideCredentialWithoutUserInteraction(for credentialIdentity: ASPasswordCredentialIdentity) {
 //        passwordItems = DatabaseManager.all()
 //
@@ -80,15 +86,15 @@ class CredentialProviderViewController: ASCredentialProviderViewController, UITa
 //    }
     
 //
-    override func provideCredentialWithoutUserInteraction(for credentialIdentity: ASPasswordCredentialIdentity) {
-
-        let id = credentialIdentity.recordIdentifier!
-        let passwordItem = DatabaseManager.search(searchText: id)
-
-        let passwordCredential = ASPasswordCredential(user: passwordItem[0].userName, password: passwordItem[0].passwordString)
-        extensionContext.completeRequest(withSelectedCredential: passwordCredential, completionHandler: nil)
-    }
-    
+//    override func provideCredentialWithoutUserInteraction(for credentialIdentity: ASPasswordCredentialIdentity) {
+//
+//        let id = credentialIdentity.recordIdentifier!
+//        let passwordItem = DatabaseManager.search(searchText: id)
+//
+//        let passwordCredential = ASPasswordCredential(user: passwordItem[0].userName, password: passwordItem[0].passwordString)
+//        extensionContext.completeRequest(withSelectedCredential: passwordCredential, completionHandler: nil)
+//    }
+//
     
 
     /*
@@ -99,15 +105,23 @@ class CredentialProviderViewController: ASCredentialProviderViewController, UITa
      */
     
     
-    override func prepareInterfaceToProvideCredential(for credentialIdentity: ASPasswordCredentialIdentity) {
-        print("prepareInterfaceToProvideCredential start")
-        if let id = credentialIdentity.recordIdentifier {
-            passwordItems = DatabaseManager.all().filter("id = %@", id)
-        } else {
-            passwordItems = DatabaseManager.all().filter("serviceURL like %@", credentialIdentity.serviceIdentifier.domainForFilter)
-        }
+//    override func prepareInterfaceToProvideCredential(for credentialIdentity: ASPasswordCredentialIdentity) {
+//        navigationBar.topItem?.leftBarButtonItem = cancelButton
+//
+//        if let id = credentialIdentity.recordIdentifier {
+//            passwordItems = DatabaseManager.all().filter("id = %@", id)
+//        } else {
+//            passwordItems = DatabaseManager.all().filter("serviceURL like %@", credentialIdentity.serviceIdentifier.domainForFilter)
+//        }
+//        tableView.reloadData()
+//
+//    }
+    
+    override func prepareInterfaceForExtensionConfiguration() {
+        navigationBar.topItem?.leftBarButtonItem = nil
+        
+        passwordItems = DatabaseManager.all()
         tableView.reloadData()
-
     }
     
     
@@ -116,13 +130,10 @@ class CredentialProviderViewController: ASCredentialProviderViewController, UITa
             return 0
         }
         return passwordItems.count
-//        return 5
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let passwordItem = passwordItems[indexPath.row]
-        
-//        let image = FilesHandling.getImage(withName: passwordItem.imageURL)
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CredentialTableViewCell
         cell.setupCell(item: passwordItem)
@@ -136,7 +147,10 @@ class CredentialProviderViewController: ASCredentialProviderViewController, UITa
         extensionContext.completeRequest(withSelectedCredential: ASPasswordCredential(user: passwordItem.userName, password: passwordItem.passwordString), completionHandler: nil)
     }
 
-    @IBAction func cancel(_ sender: AnyObject?) {
+    @IBAction func cancelButtonPressed(_ sender: AnyObject?) {
+        self.extensionContext.cancelRequest(withError: NSError(domain: ASExtensionErrorDomain, code: ASExtensionError.userCanceled.rawValue))
+    }
+    @IBAction func doneButtonPressed(_ sender: Any) {
         self.extensionContext.cancelRequest(withError: NSError(domain: ASExtensionErrorDomain, code: ASExtensionError.userCanceled.rawValue))
     }
 }

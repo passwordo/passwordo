@@ -86,7 +86,11 @@
                                                 <action selector="cancel:" destination="Pek-aD-dgE" id="P0d-dU-tE7"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="lZt-2e-cKH"/>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="lZt-2e-cKH">
+                                            <connections>
+                                                <action selector="doneButtonPressed:" destination="Pek-aD-dgE" id="WBC-gf-byL"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -118,7 +122,8 @@
                     </view>
                     <connections>
                         <outlet property="cancelButton" destination="6Mt-9u-O97" id="Z7N-pP-59q"/>
-                        <outlet property="navigationBar" destination="0Cu-RT-KbY" id="309-Q0-LGn"/>
+                        <outlet property="doneButton" destination="lZt-2e-cKH" id="lsD-CM-IUV"/>
+                        <outlet property="navigationBar" destination="0Cu-RT-KbY" id="qiR-c8-Pgj"/>
                         <outlet property="tableView" destination="Qwa-74-teL" id="HHg-Ss-kZD"/>
                     </connections>
                 </viewController>
